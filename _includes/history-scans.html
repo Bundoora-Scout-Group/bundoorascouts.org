@@ -1,0 +1,22 @@
+{% assign gallery_id = 'history-scans-' | append: page.slug %}
+{% if page.scans and page.scans.size > 0 %}
+<section class="my-10 not-prose image-gallery" id="{{ gallery_id }}" aria-labelledby="{{ gallery_id }}-title">
+  <h2 id="{{ gallery_id }}-title" class="font-headline text-2xl font-black text-primary">Original archive scans</h2>
+  <div class="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    {% for scan in page.scans %}
+    <figure class="group relative m-0" data-gsap="reveal">
+      <div class="aspect-[3/4] overflow-hidden rounded-2xl cursor-zoom-in isolate transform-gpu bg-surface-container-low">
+        <a href="{{ scan.full }}" class="gallery-thumb-link block h-full w-full" data-src="{{ scan.full }}"
+          onclick="openLightbox('{{ scan.full }}', '{{ gallery_id }}'); return false;">
+          <img src="{{ scan.thumb | default: scan.full }}" alt="{{ page.title }}, archive scan {{ forloop.index }}"
+            width="520" height="640" loading="lazy" decoding="async"
+            class="h-full w-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
+        </a>
+      </div>
+      <figcaption class="mt-2 text-center text-sm font-bold text-on-surface-variant">Scan {{ forloop.index }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+{% include image-lightbox.html %}
+{% endif %}

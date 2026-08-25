@@ -1,0 +1,46 @@
+chapters:
+  - id: first-bundoora-leadership
+    formation: "1st Bundoora"
+    period: "1961–1976"
+    accent: "#315d9b"
+    intro: "Nornan Leishman took on the first Group Scoutmaster role in 1961. Over the next fifteen years, each handover kept 1st Bundoora moving as the Group grew around Telfer Reserve."
+    leaders:
+      - nornan-leishman
+      - allan-smith
+      - william-cooper
+      - william-ellis
+      - robert-chivell
+      - randolph-alexander
+      - robert-francis
+
+  - id: second-bundoora-leadership
+    formation: "2nd Bundoora"
+    period: "1971–1989"
+    accent: "#7b263b"
+    intro: "William Cooper carried his experience from 1st Bundoora into 2nd Bundoora in 1971. A new line of Group Leaders then guided the second Group through almost two decades."
+    leaders:
+      - william-cooper
+      - bruce-hodges
+      - john-moore
+      - brian-odonnell
+      - malcolm-jenkins
+      - hermann-plustwik
+      - andrew-van-grass
+
+  - id: third-bundoora-leadership
+    formation: "3rd Bundoora"
+    period: "1979–1985"
+    accent: "#65727f"
+    intro: "Dorothy Norris and Cheryle Hodges led 3rd Bundoora through the part of its story that survives most clearly, while its youth sections continued alongside the other Bundoora Groups."
+    leaders:
+      - dorothy-norris
+      - cheryle-hodges
+
+  - id: bundoora-leadership
+    formation: "Bundoora"
+    period: "1989 onward"
+    accent: "#100e4c"
+    intro: "As the three trails joined, Geoffrey Robbins became Group Leader of the shared Bundoora Group. Paul Francis followed in 1994, carrying the combined Group into its next chapter."
+    leaders:
+      - geoffrey-robbins
+      - paul-francis

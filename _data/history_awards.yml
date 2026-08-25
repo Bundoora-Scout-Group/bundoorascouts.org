@@ -1,0 +1,48 @@
+source:
+  title: "Bundoora Scout Groups"
+  publisher: "Scout Heritage Victoria"
+  pages: "17–19"
+
+youth:
+  - { id: rodney-burfoot-qs, name: "Rodney Burfoot", formation: "Bundoora", award: "Queen's Scout", date: "1992-10", display_date: "October 1992", source_page: 18 }
+  - { id: brad-houghton-premier, name: "Brad Houghton", formation: "Bundoora", award: "Premier Scout Award", date: "1999-05", display_date: "May 1999", source_page: 18 }
+  - { id: chris-mcleod-premier, name: "Chris McLeod", formation: "Bundoora", award: "Premier Scout Award", date: "1999-05", display_date: "May 1999", source_page: 18 }
+  - { id: dean-allford-premier, name: "Dean Allford", formation: "Bundoora", award: "Premier Scout Award", date: "2002", display_date: "2002", source_page: 18 }
+  - { id: joshua-long-qs, name: "Joshua Long", formation: "Bundoora", award: "Queen's Scout", date: "2025-03", display_date: "March 2025", source_page: 18 }
+  - { id: richard-comley-qs, name: "Richard Comley", formation: "1st Bundoora", award: "Queen's Scout", date: "1967-11", display_date: "November 1967", source_page: 18 }
+  - { id: philip-burr-qs, name: "Philip Burr", formation: "1st Bundoora", award: "Queen's Scout", date: "1978-05", display_date: "May 1978", source_page: 18, note: "A 14 March 1978 newspaper clipping says Phillip had gained the badge at the end of the previous year; the award roll gives May 1978." }
+  - { id: robert-boog-qs, name: "Robert Boog", formation: "1st Bundoora", award: "Queen's Scout", date: "1979-05", display_date: "May 1979", source_page: 18 }
+  - { id: antony-bradley-qs, name: "Antony Bradley", formation: "1st Bundoora", award: "Queen's Scout", date: "1979-10", display_date: "October 1979", source_page: 18 }
+  - { id: imogen-lippiatt-qs, name: "Imogen Lippiatt", formation: "1st Bundoora", award: "Queen's Scout", date: "1986", display_date: "1986", source_page: 18 }
+  - { id: imogen-francis-qs, name: "Imogen Francis", formation: "1st Bundoora", award: "Queen's Scout", date: "1986-10", display_date: "October 1986", source_page: 18 }
+  - { id: catherine-matthews-qs, name: "Catherine Matthews", formation: "1st Bundoora", award: "Queen's Scout", date: "1989", display_date: "1989", source_page: 18 }
+  - { id: paul-plustwik-qs, name: "Paul Plustwik", formation: "2nd Bundoora", award: "Queen's Scout", date: "1982", display_date: "1982", source_page: 18 }
+  - { id: thomas-plustwik-qs, name: "Thomas Plustwik", formation: "2nd Bundoora", award: "Queen's Scout", date: "1982-10", display_date: "October 1982", source_page: 18 }
+  - { id: fiona-cooper-qs, name: "Fiona Cooper", formation: "2nd Bundoora", award: "Queen's Scout", date: "1983-05", display_date: "May 1983", source_page: 19 }
+  - { id: alan-nugent-qs, name: "Alan Nugent", formation: "2nd Bundoora", award: "Queen's Scout", date: "1986", display_date: "1986", source_page: 19 }
+  - { id: meredith-bateson-qs, name: "Meredith Bateson", formation: "2nd Bundoora", award: "Queen's Scout", date: "1986-05", display_date: "May 1986", source_page: 19 }
+  - { id: carolyn-thomas-qs, name: "Carolyn Thomas", formation: "2nd Bundoora", award: "Queen's Scout", date: "1986-05", display_date: "May 1986", source_page: 19 }
+  - { id: taneesha-pattison-qs, name: "Taneesha Pattison", formation: "1st Bundoora / Stringybark Venturers", award: "Queen's Scout", date: "2021-05", display_date: "May 2021", source_page: 19, note: "The Group announced completion in November 2020; Scout Heritage Victoria records the award in May 2021.", link: "/the-campfire/2020/11/taneesha-queen-scout" }
+
+adult:
+  - { id: russell-king-cm, name: "Russell King", formation: "Bundoora", award: "Certificate of Merit", date: "1994", source_page: 17 }
+  - { id: brian-burfoot-mm, name: "Brian Burfoot", formation: "Bundoora", award: "Medal of Merit", date: "1997", source_page: 17 }
+  - { id: bruce-gibson-sa, name: "Bruce Gibson", formation: "Bundoora", award: "Silver Arrowhead", date: "2002", source_page: 17 }
+  - { id: barbara-allford-sw, name: "Barbara Allford", formation: "Bundoora", award: "Silver Wattle", date: "2007", source_page: 17 }
+  - { id: gary-clarke-osa, name: "Gary Clarke", formation: "Bundoora", award: "Outstanding Service Award", date: "2009", source_page: 17 }
+  - { id: david-blake-cm, name: "David Blake", formation: "Bundoora", award: "Certificate of Merit", date: "2010", source_page: 17 }
+  - { id: david-blake-sw, name: "David Blake", formation: "Bundoora", award: "Silver Wattle", date: "2015", source_page: 17 }
+  - { id: d-coombes-sa, name: "D. Coombes", formation: "1st Bundoora", award: "Service Award", date: "1973", source_page: 17 }
+  - { id: r-robbins-sa, name: "R. Robbins", formation: "1st Bundoora", award: "Service Award", date: "1973", source_page: 17 }
+  - { id: robert-francis-mm, name: "Robert Francis", formation: "1st Bundoora", award: "Medal of Merit", date: "1985", source_page: 17 }
+  - { id: donald-porteous-mm, name: "Donald Porteous", formation: "1st Bundoora", award: "Medal of Merit", date: "1986", source_page: 17 }
+  - { id: ronald-hewett-mm, name: "Ronald Hewett", formation: "1st Bundoora", award: "Medal of Merit", date: "1990", source_page: 17 }
+  - { id: william-carter-cgs, name: "William Carter", formation: "2nd Bundoora", award: "Certificate of Good Service", date: "1979", source_page: 18 }
+  - { id: brian-burfoot-cm, name: "Brian Burfoot", formation: "2nd Bundoora", award: "Certificate of Merit", date: "1989", source_page: 18 }
+  - { id: a-comley-cgs, name: "A. Comley", formation: "3rd Bundoora", award: "Certificate of Good Service", date: "1981", source_page: 18 }
+
+group_records:
+  - { id: alex-chung-qs, name: "Alex Chung", formation: "Handfield Rover Crew", award: "Queen's Scout", date: "2023", link: "/the-campfire/2023/04/alex-queen-scout", source: "Bundoora Scout Group record" }
+  - { id: joan-silver-kangaroo, name: "Joan Parr", formation: "Bundoora", award: "Silver Kangaroo Service Award", date: "2022", link: "/the-campfire/2022/08/silver-kangaroo-award-joan", source: "Bundoora Scout Group record" }
+  - { id: hamish-special-service, name: "Hamish", formation: "Bundoora", award: "Special Service Award", date: "2022", link: "/the-campfire/2022/08/special-service-award-hamish", source: "Bundoora Scout Group record" }
+  - { id: kate-meritorious-service, name: "Kate", formation: "Bundoora", award: "Meritorious Service Award", date: "2024", link: "/the-campfire/2024/08/meritorious-service-award-kate", source: "Bundoora Scout Group record" }

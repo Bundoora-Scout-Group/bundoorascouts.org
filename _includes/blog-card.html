@@ -25,7 +25,7 @@
 
   <div class="surface-card-inset p-6 flex flex-col flex-grow m-2 -mt-12 relative z-10">
     <div class="flex items-center gap-2 mb-3 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">
-      {{ p.date | date: "%B %d, %Y" }}
+      {% if p.display_date %}{{ p.display_date }}{% else %}{{ p.date | date: "%B %d, %Y" }}{% endif %}
     </div>
 
     <h3 class="font-headline text-xl font-extrabold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors line-clamp-2">

@@ -1,5 +1,5 @@
 {% comment %}
-Modern GSAP-powered Image Gallery
+Image gallery using the site's shared GSAP lightbox.
 Usage: {% include image-gallery.html folder="/assets/images/camp" %}
 {% endcomment %}
 
@@ -7,121 +7,18 @@ Usage: {% include image-gallery.html folder="/assets/images/camp" %}
 {% assign gallery_images = site.static_files | where_exp: "file", "file.path contains gallery_folder" | where_exp:
 "file", "file.extname == '.jpg' or file.extname == '.JPG' or file.extname == '.png' or file.extname == '.PNG' or
 file.extname == '.jpeg' or file.extname == '.JPEG' or file.extname == '.webp' or file.extname == '.WEBP'" %}
-
-<script>
-  // Global Lightbox State (Initialize only once)
-  if (typeof galleryState === 'undefined') {
-    window.galleryState = {
-      images: [],
-      currentIndex: 0,
-      touchStartX: 0
-    };
-
-    window.openLightbox = function (src, galleryId) {
-      const lightbox = document.getElementById('gallery-lightbox');
-      const img = document.getElementById('lightbox-img');
-
-      // Load images from the specific gallery instance
-      const galleryEl = document.getElementById(galleryId);
-      if (galleryEl) {
-        window.galleryState.images = Array.from(galleryEl.querySelectorAll('.gallery-thumb-link')).map(a => a.dataset.src);
-        window.galleryState.currentIndex = window.galleryState.images.indexOf(src);
-      }
-
-      img.src = src;
-      lightbox.classList.remove('hidden');
-
-      gsap.fromTo(lightbox, { opacity: 0 }, { opacity: 1, duration: 0.4 });
-      gsap.fromTo(img, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.4)" });
-
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('keydown', handleGalleryKeydown);
-    };
-
-    window.closeLightbox = function () {
-      const lightbox = document.getElementById('gallery-lightbox');
-      gsap.to(lightbox, {
-        opacity: 0, duration: 0.3, onComplete: () => {
-          lightbox.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          document.removeEventListener('keydown', handleGalleryKeydown);
-        }
-      });
-    };
-
-    window.navigateLightbox = function (direction, e) {
-      if (e) e.stopPropagation();
-      const state = window.galleryState;
-      if (!state.images.length) return;
-
-      const newIndex = state.currentIndex + direction;
-      const img = document.getElementById('lightbox-img');
-
-      // Check if we're at the limits
-      if (newIndex < 0 || newIndex >= state.images.length) {
-        // Bounce effect
-        gsap.to(img, {
-          x: direction * 40,
-          duration: 0.2,
-          ease: "power2.out",
-          onComplete: () => {
-            gsap.to(img, {
-              x: 0,
-              duration: 0.5,
-              ease: "elastic.out(1, 0.3)"
-            });
-          }
-        });
-        return;
-      }
-
-      state.currentIndex = newIndex;
-
-      gsap.to(img, {
-        x: direction * -50,
-        opacity: 0,
-        duration: 0.2,
-        onComplete: () => {
-          img.src = state.images[state.currentIndex];
-          gsap.fromTo(img, { x: direction * 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" });
-        }
-      });
-    };
-
-    function handleGalleryKeydown(e) {
-      if (e.key === 'ArrowRight') navigateLightbox(1);
-      if (e.key === 'ArrowLeft') navigateLightbox(-1);
-      if (e.key === 'Escape') closeLightbox();
-    }
-
-    // Initialize Swipe once
-    window.addEventListener('load', () => {
-      const lightbox = document.getElementById('gallery-lightbox');
-      if (lightbox) {
-        lightbox.addEventListener('touchstart', e => window.galleryState.touchStartX = e.changedTouches[0].screenX);
-        lightbox.addEventListener('touchend', e => {
-          const touchEndX = e.changedTouches[0].screenX;
-          const diff = window.galleryState.touchStartX - touchEndX;
-          if (diff > 50) navigateLightbox(1);
-          if (diff < -50) navigateLightbox(-1);
-        });
-      }
-    });
-  }
-</script>
-
 {% assign gallery_id = gallery_folder | slugify | default: "default-gallery" %}
+
 {% if gallery_images.size > 0 %}
-<section class="my-8 not-prose" id="{{ gallery_id }}" aria-label="Image gallery">
+<section class="my-8 not-prose image-gallery" id="{{ gallery_id }}" aria-label="Image gallery">
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {% for image in gallery_images %}
     {% assign image_name = image.basename | replace: '-', ' ' | replace: '_', ' ' %}
     <figure class="group relative m-0" data-gsap="reveal" data-delay="{{ forloop.index0 | modulo: 4 | times: 0.1 }}">
       <div class="aspect-square overflow-hidden rounded-2xl cursor-zoom-in isolate transform-gpu">
-        <a href="{{ image.path }}" class="gallery-thumb-link block w-full h-full"
-          data-src="{{ image.path }}" onclick="openLightbox('{{ image.path }}', '{{ gallery_id }}'); return false;">
-          <img src="{{ image.path }}" alt="{{ image_name | capitalize }}"
-            width="600" height="600" loading="lazy" decoding="async"
+        <a href="{{ image.path }}" class="gallery-thumb-link block w-full h-full" data-src="{{ image.path }}"
+          onclick="openLightbox('{{ image.path }}', '{{ gallery_id }}'); return false;">
+          <img src="{{ image.path }}" alt="{{ image_name | capitalize }}" width="600" height="600" loading="lazy" decoding="async"
             class="w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-110">
         </a>
       </div>
@@ -129,40 +26,10 @@ file.extname == '.jpeg' or file.extname == '.JPEG' or file.extname == '.webp' or
     {% endfor %}
   </div>
 </section>
-
-<!-- Shared Lightbox Overlay (Only render once per page) -->
-{% unless site.data.lightbox_rendered %}
-<div id="gallery-lightbox"
-  class="fixed inset-0 z-[2000] bg-primary/95 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-12"
-  onclick="closeLightbox()">
-  <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[2010]"
-    onclick="closeLightbox()" aria-label="Close image viewer">
-    <span class="material-symbols-outlined text-4xl" aria-hidden="true">close</span>
-  </button>
-  <button
-    class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-all hover:scale-110 z-[2010] bg-white/5 p-4 rounded-full backdrop-blur-md"
-    onclick="navigateLightbox(-1, event)" aria-label="Previous image">
-    <span class="material-symbols-outlined text-4xl" aria-hidden="true">chevron_left</span>
-  </button>
-  <button
-    class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-all hover:scale-110 z-[2010] bg-white/5 p-4 rounded-full backdrop-blur-md"
-    onclick="navigateLightbox(1, event)" aria-label="Next image">
-    <span class="material-symbols-outlined text-4xl" aria-hidden="true">chevron_right</span>
-  </button>
-  <div class="relative w-full h-full flex items-center justify-center pointer-events-none">
-    <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Expanded gallery image"
-      class="max-w-full max-h-[85vh] md:max-h-[90vh] rounded-2xl shadow-2xl object-contain select-none pointer-events-auto transition-transform duration-300">
-  </div>
-</div>
-{% assign site.data.lightbox_rendered = true %}
-{% endunless %}
+{% include image-lightbox.html %}
 {% else %}
 <div class="my-8 p-6 bg-surface-container-low rounded-2xl border border-dashed border-outline-variant text-center">
   <span class="material-symbols-outlined text-4xl text-outline-variant mb-3" aria-hidden="true">image_not_supported</span>
   <p class="text-on-surface-variant font-bold">No images found in {{ gallery_folder }}</p>
-  <div class="mt-4 pt-4 border-t border-outline-variant/30 not-prose">
-    <p class="text-xs text-on-surface-variant/60">Make sure the path is correct and images are present in the
-      repository.</p>
-  </div>
 </div>
 {% endif %}

@@ -1,0 +1,113 @@
+{% comment %}Shared gallery lightbox used by image-gallery and other image collections.{% endcomment %}
+<script>
+  if (typeof galleryState === 'undefined') {
+    window.galleryState = {
+      images: [],
+      currentIndex: 0,
+      touchStartX: 0
+    };
+
+    window.openLightbox = function (src, galleryId) {
+      const lightbox = document.getElementById('gallery-lightbox');
+      const img = document.getElementById('lightbox-img');
+      const galleryEl = document.getElementById(galleryId);
+
+      if (galleryEl) {
+        window.galleryState.images = Array.from(galleryEl.querySelectorAll('.gallery-thumb-link')).map(a => a.dataset.src);
+        window.galleryState.currentIndex = window.galleryState.images.indexOf(src);
+      }
+
+      img.src = src;
+      lightbox.classList.remove('hidden');
+      gsap.fromTo(lightbox, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+      gsap.fromTo(img, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.4)' });
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleGalleryKeydown);
+    };
+
+    window.closeLightbox = function () {
+      const lightbox = document.getElementById('gallery-lightbox');
+      gsap.to(lightbox, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          lightbox.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+          document.removeEventListener('keydown', handleGalleryKeydown);
+        }
+      });
+    };
+
+    window.navigateLightbox = function (direction, event) {
+      if (event) event.stopPropagation();
+      const state = window.galleryState;
+      if (!state.images.length) return;
+
+      const newIndex = state.currentIndex + direction;
+      const img = document.getElementById('lightbox-img');
+      if (newIndex < 0 || newIndex >= state.images.length) {
+        gsap.to(img, {
+          x: direction * 40,
+          duration: 0.2,
+          ease: 'power2.out',
+          onComplete: () => gsap.to(img, { x: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' })
+        });
+        return;
+      }
+
+      state.currentIndex = newIndex;
+      gsap.to(img, {
+        x: direction * -50,
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          img.src = state.images[state.currentIndex];
+          gsap.fromTo(img, { x: direction * 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
+        }
+      });
+    };
+
+    function handleGalleryKeydown(event) {
+      if (event.key === 'ArrowRight') navigateLightbox(1);
+      if (event.key === 'ArrowLeft') navigateLightbox(-1);
+      if (event.key === 'Escape') closeLightbox();
+    }
+
+    window.addEventListener('load', () => {
+      const lightbox = document.getElementById('gallery-lightbox');
+      if (!lightbox) return;
+      lightbox.addEventListener('touchstart', event => window.galleryState.touchStartX = event.changedTouches[0].screenX);
+      lightbox.addEventListener('touchend', event => {
+        const diff = window.galleryState.touchStartX - event.changedTouches[0].screenX;
+        if (diff > 50) navigateLightbox(1);
+        if (diff < -50) navigateLightbox(-1);
+      });
+    });
+  }
+</script>
+
+{% unless site.data.lightbox_rendered %}
+<div id="gallery-lightbox"
+  class="fixed inset-0 z-[2000] bg-primary/95 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-12"
+  role="dialog" aria-modal="true" aria-label="Expanded gallery image" onclick="closeLightbox()">
+  <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[2010]"
+    onclick="closeLightbox()" aria-label="Close image viewer">
+    <span class="material-symbols-outlined text-4xl" aria-hidden="true">close</span>
+  </button>
+  <button
+    class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-all hover:scale-110 z-[2010] bg-white/5 p-4 rounded-full backdrop-blur-md"
+    onclick="navigateLightbox(-1, event)" aria-label="Previous image">
+    <span class="material-symbols-outlined text-4xl" aria-hidden="true">chevron_left</span>
+  </button>
+  <button
+    class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-all hover:scale-110 z-[2010] bg-white/5 p-4 rounded-full backdrop-blur-md"
+    onclick="navigateLightbox(1, event)" aria-label="Next image">
+    <span class="material-symbols-outlined text-4xl" aria-hidden="true">chevron_right</span>
+  </button>
+  <div class="relative w-full h-full flex items-center justify-center pointer-events-none">
+    <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Expanded gallery image"
+      class="max-w-full max-h-[85vh] md:max-h-[90vh] rounded-2xl shadow-2xl object-contain select-none pointer-events-auto transition-transform duration-300">
+  </div>
+</div>
+{% assign site.data.lightbox_rendered = true %}
+{% endunless %}

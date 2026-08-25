@@ -39,6 +39,8 @@
   children:
     - title: Overview
       url: /about
+    - title: Group History
+      url: /about/history
     - title: Our Leaders
       url: /about/our-leaders
     - title: Expeditions

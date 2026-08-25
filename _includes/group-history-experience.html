@@ -1,0 +1,311 @@
+<div class="history-page">
+  <nav class="history-jump-nav" aria-label="History page sections">
+    <div class="site-container history-jump-nav__inner">
+      <a href="#three-trails">Three trails</a>
+      <a href="#records">By the numbers</a>
+      <a href="#honours">Honour roll</a>
+      <a href="#people">Group leaders</a>
+      <a href="#archive">Archive</a>
+      <a href="#continuing-story">Continuing story</a>
+    </div>
+  </nav>
+
+  <section class="history-section history-section--paper" aria-labelledby="history-introduction">
+    <div class="site-container history-editorial-intro">
+      <div>
+        <p class="history-section-label">Where our story begins</p>
+        <h2 id="history-introduction" class="history-section-title">Three Groups grew side by side</h2>
+      </div>
+      <div class="history-editorial-intro__copy">
+        <p>Before today's Group shared one name, 1st, 2nd and 3rd Bundoora each had their own scarf, leaders and memories. Through the 1970s and 1980s their stories ran alongside one another, often crossing through the same families, district events and friendships.</p>
+        <p>Around 1990 those separate trails became the Bundoora Scout Group we know today. The pages and photographs left behind bring back only part of the journey, but the people in them carry the story across more than six decades.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="three-trails" class="history-section" aria-labelledby="three-trails-title">
+    <div class="site-container">
+      <div class="history-section-heading">
+        <div>
+          <p class="history-section-label">1961 to about 1990</p>
+          <h2 id="three-trails-title" class="history-section-title">Three trails converge</h2>
+        </div>
+        <p>Blue edged with orange, pale yellow and maroon, and a changing 3rd Bundoora scarf made each Group distinct. By about 1990, one maroon scarf marked the beginning of their shared chapter.</p>
+      </div>
+
+      <div class="history-track-grid">
+        {% for formation in site.data.history_formations.formations limit:3 %}
+        <article class="history-track" style="--track: {{ formation.accent }}; --track-secondary: {{ formation.secondary_accent }};">
+          <header class="history-track__header">
+            <span class="history-track__number">{{ formation.short_name }}</span>
+            <div>
+              <h3>{{ formation.name }}</h3>
+              <p>{{ formation.display_period }}</p>
+            </div>
+          </header>
+          <p class="history-track__summary">{{ formation.summary }}</p>
+          <ol class="history-track__events">
+            {% for milestone in formation.milestones %}
+            <li>
+              <time datetime="{{ milestone.date }}">{{ milestone.display_date }}</time>
+              <h4>{{ milestone.title }}</h4>
+              <p>{{ milestone.description }}</p>
+            </li>
+            {% endfor %}
+          </ol>
+          <p class="history-track__scarf"><strong>Group scarf:</strong> {{ formation.scarf }}</p>
+        </article>
+        {% endfor %}
+
+        <div class="history-track-join" aria-hidden="true">
+          <svg viewBox="0 0 900 150" preserveAspectRatio="none">
+            <path d="M150 0 C150 82 450 65 450 150" class="history-track-join__first"></path>
+            <path d="M450 0 L450 150" class="history-track-join__second"></path>
+            <path d="M750 0 C750 82 450 65 450 150" class="history-track-join__third"></path>
+          </svg>
+          <span>c. 1990</span>
+        </div>
+
+        {% assign unified = site.data.history_formations.formations | last %}
+        <article class="history-track history-track--unified" style="--track: {{ unified.accent }}; --track-secondary: {{ unified.secondary_accent }};">
+          <header class="history-track__header">
+            <span class="history-track__number"><span class="material-symbols-outlined" aria-hidden="true">groups</span></span>
+            <div>
+              <h3>{{ unified.name }}</h3>
+              <p>{{ unified.display_period }}</p>
+            </div>
+          </header>
+          <p class="history-track__summary">{{ unified.summary }}</p>
+          <ol class="history-track__events history-track__events--horizontal">
+            {% for milestone in unified.milestones %}
+            <li>
+              <time datetime="{{ milestone.date }}">{{ milestone.display_date }}</time>
+              <h4>{{ milestone.title }}</h4>
+              <p>{{ milestone.description }}</p>
+            </li>
+            {% endfor %}
+          </ol>
+          <p class="history-track__scarf"><strong>Group scarf:</strong> {{ unified.scarf }}</p>
+        </article>
+
+        <div id="continuing-story" class="history-continuing-trail">
+          <header>
+            <p class="history-section-label">One Group, still moving</p>
+            <h3>The trail continues through every new adventure</h3>
+            <p>Once the three Groups came together, families and leaders kept adding to the same story—improving the hall, serving the community and giving young people ever-bigger adventures.</p>
+          </header>
+          <ol>
+            {% for event in site.data.history.events %}
+            {% assign event_date = event.date | append: '' %}
+            {% assign event_year = event_date | slice: 0, 4 | plus: 0 %}
+            {% if event_year >= 1994 %}
+            {% assign event_date_length = event_date | size %}
+            {% if event_date_length == 7 %}{% assign display_event_date = event_date | append: '-01' %}{% else %}{% assign display_event_date = event_date %}{% endif %}
+            <li>
+              <div class="history-continuing-trail__marker">
+                <span class="material-symbols-outlined" aria-hidden="true">{{ event.icon }}</span>
+              </div>
+              <article>
+                <time datetime="{{ event_date }}">{% if event_date_length == 4 %}{{ event_date }}{% else %}{{ display_event_date | date: '%B %Y' }}{% endif %}</time>
+                <h4>{{ event.label }}</h4>
+                <p>{{ event.description }}</p>
+                {% if event.link %}<a href="{{ event.link }}">Read the story <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>{% endif %}
+              </article>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="records" class="history-section history-section--navy" aria-labelledby="records-title">
+    <div class="site-container">
+      <div class="history-section-heading history-section-heading--light">
+        <div>
+          <p class="history-section-label">In the surviving records</p>
+          <h2 id="records-title" class="history-section-title">Hundreds of people left their mark</h2>
+        </div>
+        <p>The surviving records give a sense of the generations who passed through Bundoora. They are a starting point, not a complete lifetime count.</p>
+      </div>
+      <dl class="history-stat-grid">
+        {% for stat in site.data.history_stats.stats %}
+        <div>
+          <dt>
+            <span class="material-symbols-outlined" aria-hidden="true">{{ stat.icon }}</span>
+            {{ stat.label }}
+          </dt>
+          <dd>{{ stat.value }}</dd>
+          <p>{{ stat.detail }}</p>
+        </div>
+        {% endfor %}
+      </dl>
+    </div>
+  </section>
+
+  <section id="honours" class="history-section history-section--paper" aria-labelledby="honours-title">
+    <div class="site-container">
+      <div class="history-section-heading">
+        <div>
+          <p class="history-section-label">Honour roll</p>
+          <h2 id="honours-title" class="history-section-title">Achievement and service</h2>
+        </div>
+        <p>Across the three Groups, young people worked towards Scouting's highest awards while adults gave years of service behind the scenes. Their achievements now belong to one Bundoora honour roll.</p>
+      </div>
+
+      <details class="history-adult-awards history-youth-awards">
+        <summary><span>Youth peak awards</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+        <div class="history-youth-awards__groups">
+          <section aria-labelledby="queen-scouts-title">
+            <div class="history-honour-panel__heading">
+              <img src="/assets/images/sections/peak-award-venturers.svg" alt="" width="96" height="96" loading="lazy">
+              <div><p>Highest youth award</p><h3 id="queen-scouts-title">Queen's Scouts</h3></div>
+            </div>
+            <div class="history-adult-awards__grid history-youth-awards__grid">
+              {% for award in site.data.history_awards.youth %}
+              {% if award.award == "Queen's Scout" %}
+              <article id="{{ award.id }}">
+                <span>{{ award.display_date }}</span>
+                {% assign award_profile = site.history_people | where: 'history_id', award.id | first %}
+                <h3>{% if award_profile %}<a href="{{ award_profile.url }}">{{ award.name }}</a>{% else %}{{ award.name }}{% endif %}</h3>
+                <p>{{ award.formation }}</p>
+                {% if award.link %}<a href="{{ award.link }}" aria-label="Read the Group story about {{ award.name }}">Read the story</a>{% endif %}
+              </article>
+              {% endif %}
+              {% endfor %}
+              {% for award in site.data.history_awards.group_records %}
+              {% if award.award == "Queen's Scout" %}
+              <article id="{{ award.id }}">
+                <span>{{ award.date }}</span>
+                <h3>{{ award.name }}</h3>
+                <p>{{ award.formation }}</p>
+                {% if award.link %}<a href="{{ award.link }}" aria-label="Read the Group story about {{ award.name }}">Read the story</a>{% endif %}
+              </article>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </section>
+
+          <section aria-labelledby="premier-awards-title">
+            <div class="history-honour-panel__heading">
+              <img src="/assets/images/sections/peak-award-scouts.svg" alt="" width="96" height="96" loading="lazy">
+              <div><p>Top Scout section award</p><h3 id="premier-awards-title">Premier Scout Awards</h3></div>
+            </div>
+            <div class="history-adult-awards__grid history-youth-awards__grid">
+              {% for award in site.data.history_awards.youth %}
+              {% if award.award == "Premier Scout Award" %}
+              <article>
+                <span>{{ award.display_date }}</span>
+                <h3>{{ award.name }}</h3>
+                <p>{{ award.formation }}</p>
+              </article>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </section>
+        </div>
+      </details>
+
+      <details class="history-adult-awards">
+        <summary><span>Adult service and recognition awards</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></summary>
+        <div class="history-adult-awards__grid">
+          {% for award in site.data.history_awards.adult %}
+          <article id="{{ award.id }}">
+            <span>{{ award.date }}</span>
+            {% assign award_profile = site.history_people | where: 'history_id', award.id | first %}
+            <h3>{% if award_profile %}<a href="{{ award_profile.url }}">{{ award.name }}</a>{% else %}{{ award.name }}{% endif %}</h3>
+            <p>{{ award.award }}</p>
+            <small>{{ award.formation }}</small>
+            {% if award.note %}<small>{{ award.note }}</small>{% endif %}
+          </article>
+          {% endfor %}
+          {% for award in site.data.history_awards.group_records %}
+          {% unless award.award == "Queen's Scout" %}
+          <article id="{{ award.id }}">
+            <span>{{ award.date }}</span>
+            <h3>{{ award.name }}</h3>
+            <p>{{ award.award }}</p>
+            {% if award.link %}<a href="{{ award.link }}">Read the story</a>{% endif %}
+          </article>
+          {% endunless %}
+          {% endfor %}
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="people" class="history-section" aria-labelledby="people-title">
+    <div class="site-container">
+      <div class="history-section-heading">
+        <div>
+          <p class="history-section-label">People who led the way</p>
+          <h2 id="people-title" class="history-section-title">Group Leaders and Group Scoutmasters</h2>
+        </div>
+        <p>Each handover carried experience, traditions and care for the Group into its next chapter. These are the Group Leaders and Group Scoutmasters named across the four Bundoora formations.</p>
+      </div>
+
+      <div class="history-leadership-chapters">
+        {% for chapter in site.data.history_leadership_chapters.chapters %}
+        <section id="{{ chapter.id }}" style="--chapter-accent: {{ chapter.accent }};">
+          <header>
+            <p>{{ chapter.period }}</p>
+            <h3>{{ chapter.formation }}</h3>
+            <p>{{ chapter.intro }}</p>
+          </header>
+          <ol>
+            {% for leader_id in chapter.leaders %}
+            {% assign leader = site.data.history_leaders.leaders | where: 'id', leader_id | first %}
+            {% assign chapter_appointments = leader.appointments | where: 'formation', chapter.formation %}
+            {% assign leader_profile = site.history_people | where: 'history_id', leader.id | first %}
+            <li>
+              <h4>{% if leader_profile %}<a href="{{ leader_profile.url }}">{{ leader.name }}</a>{% else %}{{ leader.name }}{% endif %}</h4>
+              {% for appointment in chapter_appointments %}
+              {% if appointment.from or appointment.to %}
+              <p class="history-leadership-chapters__term">
+                <strong>{{ appointment.role }}</strong>
+                <time>{% if appointment.from and appointment.to %}{{ appointment.from | date: '%-d %b %Y' }} to {{ appointment.to | date: '%-d %b %Y' }}{% elsif appointment.from %}From {{ appointment.from | date: '%-d %b %Y' }}{% endif %}</time>
+              </p>
+              {% endif %}
+              {% endfor %}
+            </li>
+            {% endfor %}
+          </ol>
+        </section>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+
+  <section id="archive" class="history-section history-section--archive" aria-labelledby="archive-title">
+    <div class="site-container">
+      <div class="history-section-heading history-section-heading--light">
+        <div>
+          <p class="history-section-label">From the archive</p>
+          <h2 id="archive-title" class="history-section-title">Voices from the archive</h2>
+        </div>
+        <p>Newspaper cuttings and Scout magazines bring back the fundraisers, awards, big ideas and ordinary nights that shaped the Group.</p>
+      </div>
+
+      {% assign history_articles = site.posts | where: 'history_archive', true %}
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {% for article in history_articles %}
+          {% include blog-card.html post=article %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="history-section history-section--contact" aria-labelledby="history-contact-title">
+    <div class="site-container history-contact">
+      <div>
+        <p class="history-section-label">Your part of the story</p>
+        <h2 id="history-contact-title">Do you recognise a name, photograph or memory?</h2>
+        <p>If Bundoora Scouting has been part of your family, you may hold the next piece of this history. We would love to hear about it.</p>
+      </div>
+      <a href="/contact" class="btn btn-primary">Contact the Group <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </section>
+
+</div>

@@ -5,6 +5,7 @@ _site
 .vscode
 .cspell
 .frontmatter
+.cache
 frontmatter.json
 scratch/
 vendor/

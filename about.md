@@ -15,9 +15,9 @@ From the earliest campfires in the 1960s to today's multi-day expeditions and co
 
 ## Our History
 
-More than six decades of adventure, service and community - one milestone at a time.
+Three Bundoora Scout Groups helped shape the Group that meets at Telfer Reserve today. Their surviving records include hundreds of youth registrations and adult appointments, sixteen Queen's Scouts, local newspaper stories and more than six decades of service.
 
-{% include history-timeline.html %}
+{% include history-preview.html %}
 
 ## What We Stand For
 

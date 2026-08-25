@@ -1,0 +1,107 @@
+formations:
+  - id: first-bundoora
+    name: "1st Bundoora"
+    short_name: "1st"
+    recorded_from: "1961-09"
+    recorded_to: "c. 1990"
+    display_period: "September 1961 to about 1990"
+    accent: "#315d9b"
+    secondary_accent: "#e87924"
+    scarf: "Blue with orange braid at the edge from September 1961."
+    summary: "The first trail begins in 1961, with a new Group, a blue-and-orange scarf and its first team of leaders."
+    source_page: 3
+    milestones:
+      - id: first-scarf
+        date: "1961-09"
+        display_date: "SEP 1961"
+        date_precision: month
+        title: "Blue and orange"
+        description: "1st Bundoora began wearing a blue scarf finished with orange braid."
+        source_page: 3
+      - id: first-warrants
+        date: "1961-11-01"
+        display_date: "1 NOV 1961"
+        date_precision: day
+        title: "The first leadership team"
+        description: "Edward Clipson and Nornan Leishman took on the Group's earliest known leader roles."
+        source_page: 7
+
+  - id: second-bundoora
+    name: "2nd Bundoora"
+    short_name: "2nd"
+    recorded_from: "1970"
+    recorded_to: "c. 1990"
+    display_period: "1970 to about 1990"
+    accent: "#7b263b"
+    secondary_accent: "#e7c75f"
+    scarf: "Pale yellow and maroon, followed by a yellow-edged scarf from November 1970."
+    summary: "As Bundoora grew, a second Group opened another trail for local families through the 1970s and 1980s."
+    source_page: 3
+    milestones:
+      - id: second-leadership
+        date: "1970-09"
+        display_date: "1970"
+        date_precision: year
+        title: "A second Bundoora Group"
+        description: "2nd Bundoora formed its leadership team and adopted its own scarf."
+        source_page: 12
+  - id: third-bundoora
+    name: "3rd Bundoora"
+    short_name: "3rd"
+    recorded_from: "1965-03"
+    recorded_to: "c. 1990"
+    display_period: "March 1965 to about 1990"
+    accent: "#65727f"
+    secondary_accent: "#d8dde2"
+    scarf: "A scarf was in use by March 1965, with white cord added around 1979; its original base colour is still unknown."
+    summary: "3rd Bundoora's scarf appears in 1965. Its later chapter comes into clearer view when a new leadership team formed in 1979."
+    source_page: 4
+    milestones:
+      - id: third-scarf
+        date: "1965-03"
+        display_date: "MAR 1965"
+        date_precision: month
+        title: "3rd Bundoora appears"
+        description: "A third Bundoora scarf was already in use by March 1965."
+        source_page: 4
+      - id: third-leadership
+        date: "1979-04-20"
+        display_date: "20 APR 1979"
+        date_precision: day
+        title: "A new leadership chapter"
+        description: "Graham Cooper became Assistant Cub Leader as 3rd Bundoora's later team took shape."
+        source_page: 16
+
+  - id: bundoora
+    name: "Bundoora Scout Group"
+    short_name: "Bundoora"
+    recorded_from: "1981"
+    recorded_to: "present"
+    display_period: "1981 to the present"
+    accent: "#100e4c"
+    secondary_accent: "#3f5e94"
+    scarf: "Maroon from about 1990, with the Banyule District badge added in later years."
+    summary: "The Bundoora name began to be shared during the 1980s. Around 1990, the separate trails met under one maroon scarf."
+    source_page: 5
+    milestones:
+      - id: shared-bundoora-records
+        date: "1981"
+        display_date: "1981"
+        date_precision: year
+        title: "The shared name appears"
+        description: "Leaders began serving under the unnumbered Bundoora name while the numbered Groups were still active."
+        source_page: 5
+      - id: groups-converge
+        date: "1990"
+        display_date: "c. 1990"
+        date_precision: circa-year
+        title: "Three trails converge"
+        description: "The numbered Groups came together under the Bundoora name and a shared maroon scarf."
+        source_page: 5
+      - id: banyule-identity
+        date: "1995-07"
+        display_date: "JUL 1995"
+        date_precision: month
+        title: "Banyule becomes part of the scarf"
+        description: "The Banyule District badge joined the Bundoora scarf after the district changed its name."
+        source_page: 4

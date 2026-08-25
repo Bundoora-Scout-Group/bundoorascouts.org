@@ -96,6 +96,10 @@ collections:
     output: true
     permalink: /people/:name
     layout: person
+  history_people:
+    output: true
+    permalink: /about/history/people/:name
+    layout: history-person
 
 # Feed
 feed:
@@ -143,6 +147,12 @@ defaults:
       type: people
     values:
       layout: person
+  -
+    scope:
+      path: ""
+      type: history_people
+    values:
+      layout: history-person
   - 
     scope:
       path: "assets/images"

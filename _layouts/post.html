@@ -84,7 +84,7 @@ layout: default
 
           <div class="hero-meta-item">
             <span class="material-symbols-outlined hero-meta-icon" aria-hidden="true">calendar_today</span>
-            <span>{{ page.date | date: "%B %d, %Y" }}</span>
+            <span>{% if page.display_date %}{{ page.display_date }}{% else %}{{ page.date | date: "%B %d, %Y" }}{% endif %}</span>
           </div>
 
           <div class="hero-meta-item">

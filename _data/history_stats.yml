@@ -1,0 +1,36 @@
+source:
+  title: "Bundoora Scout Groups"
+  publisher: "Scout Heritage Victoria"
+  report_date: "2026-08-24"
+  note: "The report records surviving database entries. Gaps exist where records were not retained or transferred."
+
+stats:
+  - id: youth-registration-entries
+    value: "475"
+    label: "youth registration entries"
+    detail: "474 distinct registration numbers"
+    icon: groups
+
+  - id: adult-leadership-appointments
+    value: "212"
+    label: "adult leadership appointments"
+    detail: "Across all four Bundoora formations"
+    icon: workspace_premium
+
+  - id: group-leadership-records
+    value: "17"
+    label: "Group Leaders and Group Scoutmasters"
+    detail: "Across 21 known terms"
+    icon: flag
+
+  - id: top-youth-awards
+    value: "19"
+    label: "top youth awards"
+    detail: "16 Queen's Scouts and 3 Premier Scout Awards"
+    icon: stars
+
+  - id: adult-service-awards
+    value: "15"
+    label: "adult service awards"
+    detail: "Service recognised from 1973 to 2015"
+    icon: military_tech

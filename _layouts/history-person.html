@@ -1,0 +1,37 @@
+---
+layout: page
+---
+
+<div class="not-prose mb-8 flex flex-wrap items-center gap-3 text-sm font-bold text-on-surface-variant">
+  <a href="/about/history#people" class="inline-flex items-center gap-1 text-secondary hover:text-primary">
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+    Group history
+  </a>
+  <span aria-hidden="true">/</span>
+  <span>People who led the way</span>
+</div>
+
+{% if page.appointments %}
+<div class="not-prose mb-10 grid gap-3 sm:grid-cols-2">
+  {% for appointment in page.appointments %}
+  <div class="rounded-2xl border border-outline-variant/60 bg-surface-container-low p-5">
+    <p class="m-0 text-xs font-black uppercase tracking-[0.12em] text-secondary">{{ appointment.formation }}</p>
+    <p class="mb-0 mt-2 font-headline text-xl font-black text-primary">{{ appointment.role }}</p>
+    <p class="mb-0 mt-1 text-sm text-on-surface-variant">{{ appointment.dates }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{{ content }}
+
+{% if page.sources %}
+<section class="not-prose mt-12 rounded-2xl border border-outline-variant/60 bg-surface-container-low p-6" aria-labelledby="profile-sources">
+  <h2 id="profile-sources" class="m-0 font-headline text-2xl font-black text-primary">Sources</h2>
+  <ol class="mb-0 mt-4 space-y-3 pl-5 text-sm text-on-surface-variant">
+    {% for source in page.sources %}
+    <li><strong class="text-primary">{{ source.title }}</strong>{% if source.detail %}, {{ source.detail }}{% endif %}</li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}

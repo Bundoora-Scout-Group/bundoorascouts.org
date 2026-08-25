@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<header class="hero-shell bg-primary-container">
+  <div class="hero-media">
+    <img src="{{ page.image }}" alt="" width="1600" height="900" loading="eager" fetchpriority="high"
+      class="hero-media-image hero-media-image--subtle">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="site-container hero-content">
+    <div class="hero-copy">
+      <span class="eyebrow eyebrow--brand">{{ page.badge }}</span>
+      <h1 class="hero-title">Three Bundoora Groups,<br><span class="hero-title-accent">One Continuing Story</span></h1>
+      <p class="hero-description">{{ page.description }}</p>
+    </div>
+  </div>
+</header>
+
+{{ content }}

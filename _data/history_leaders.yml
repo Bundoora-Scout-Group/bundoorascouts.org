@@ -1,0 +1,79 @@
+source:
+  title: "Bundoora Scout Groups"
+  publisher: "Scout Heritage Victoria"
+  pages: "5–17"
+  note: "The register consolidates 21 Group Leader and Group Scoutmaster appointment records into 17 apparent identities."
+
+leaders:
+  - id: geoffrey-robbins
+    name: "Geoffrey Robbins"
+    appointments:
+      - { formation: "Bundoora", role: "Group Leader", from: "1989-11-21", to: "1991-03-31", source_page: 6 }
+  - id: paul-francis
+    name: "Paul Francis"
+    appointments:
+      - { formation: "Bundoora", role: "Group Leader", from: "1994-02-17", to: null, source_page: 7 }
+  - id: nornan-leishman
+    name: "Nornan Leishman"
+    name_note: "Spelling follows the surviving warrant record."
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Scoutmaster", from: "1961-11-01", to: "1964-04-01", source_page: 7 }
+  - id: allan-smith
+    name: "Allan Smith"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Scoutmaster", from: "1964-10-01", to: "1966-05-05", source_page: 7 }
+  - id: william-cooper
+    name: "William Cooper"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Scoutmaster", from: "1966-09-05", to: "1969-03-09", source_page: 8, record_count: 2, note: "A second overlapping record runs from January 1967 to January 1969." }
+      - { formation: "2nd Bundoora", role: "Group Scoutmaster", from: "1971-02-22", to: "1972-03-31", source_page: 12 }
+  - id: william-ellis
+    name: "William Ellis"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Scoutmaster", from: "1969-02-01", to: "1970-01-22", source_page: 9, record_count: 2, note: "Two overlapping appointment entries survive." }
+  - id: robert-chivell
+    name: "Robert Chivell"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Scoutmaster", from: "1970-05-17", to: "1972-03-31", source_page: 9 }
+  - id: randolph-alexander
+    name: "Randolph Alexander"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Leader", from: "1973-09-29", to: "1975-05-30", source_page: 9 }
+  - id: robert-francis
+    name: "Robert Francis"
+    appointments:
+      - { formation: "1st Bundoora", role: "Group Leader", from: "1976-09-28", to: null, source_page: 10 }
+  - id: hermann-plustwik
+    name: "Hermann Plustwik"
+    name_note: "An undated entry records a spelling variant of the first name."
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: null, to: null, source_page: 12, note: "Undated appointment record." }
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1981-04-15", to: "1987-04-15", source_page: 14 }
+  - id: bruce-hodges
+    name: "Bruce Hodges"
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1972-04-07", to: "1972-05-01", source_page: 12 }
+  - id: john-moore
+    name: "John Moore"
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1973-05-06", to: null, source_page: 12 }
+  - id: brian-odonnell
+    name: "Brian O'Donnell"
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1976-07-22", to: "1978-02-01", source_page: 13 }
+  - id: malcolm-jenkins
+    name: "Malcolm Jenkins"
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1978-08-18", to: "1980-09-02", source_page: 13 }
+  - id: andrew-van-grass
+    name: "Andrew Van Grass"
+    appointments:
+      - { formation: "2nd Bundoora", role: "Group Leader", from: "1988-10-15", to: "1989-08-15", source_page: 16 }
+  - id: dorothy-norris
+    name: "Dorothy Norris"
+    appointments:
+      - { formation: "3rd Bundoora", role: "Group Leader", from: "1979-11-21", to: "1982-07-15", source_page: 16 }
+  - id: cheryle-hodges
+    name: "Cheryle Hodges"
+    appointments:
+      - { formation: "3rd Bundoora", role: "Group Leader", from: "1984-11-15", to: "1985-10-15", source_page: 17 }
