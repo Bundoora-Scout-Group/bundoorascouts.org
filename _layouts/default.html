@@ -46,9 +46,9 @@
   <!-- Tailwind CSS -->
   <link href="/assets/css/app.css" rel="stylesheet">
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Self-hosted map renderer CSS -->
+  <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/assets/vendor/maplibre/maplibre-gl.css" />
 </head>
 
 <body
@@ -136,9 +136,20 @@
   <script type="module" src="/assets/js/uniform-badge-viewer.js"></script>
   {% endif %}
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Self-hosted Leaflet + MapLibre renderer. Map data comes from OpenStreetMap. -->
+  <script src="/assets/vendor/leaflet/leaflet.js"></script>
+  <script src="/assets/vendor/maplibre/maplibre-gl.js"></script>
+  <script src="/assets/vendor/maplibre/leaflet-maplibre-gl.js"></script>
+  <script>
+    window.BundooraMapConfig = Object.freeze({
+      vectorStyleUrl: {{ site.data.map.vector_style | jsonify }},
+      rasterTileUrl: {{ site.data.map.raster_tiles | jsonify }},
+      rasterMaxZoom: {{ site.data.map.raster_max_zoom | jsonify }},
+      mapMaxZoom: {{ site.data.map.map_max_zoom | jsonify }},
+      attribution: {{ site.data.map.attribution | jsonify }}
+    });
+  </script>
+  <script src="/assets/js/map-base-layer.js"></script>
 </body>
 
 </html>

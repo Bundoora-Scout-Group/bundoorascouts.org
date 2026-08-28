@@ -277,17 +277,13 @@ Renders a Leaflet.js map showing the expedition route.
     function setText(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
 
     // ─── Initialization ──────────────────────────────────────────────────────────
-    window.addEventListener('load', function () {
-      if (typeof L === 'undefined') return;
+    window.addEventListener('load', async function () {
+      if (typeof L === 'undefined' || typeof window.BundooraMaps === 'undefined') return;
 
       var map = L.map('expedition-map', { zoomControl: false, scrollWheelZoom: false });
       window.expeditionMap = map;
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-        subdomains: 'abcd',
-        maxZoom: 20
-      }).addTo(map);
+      await window.BundooraMaps.addBaseLayer(map);
 
       L.control.zoom({ position: 'topright' }).addTo(map);
 

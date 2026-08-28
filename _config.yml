@@ -122,7 +122,6 @@ exclude:
   - package-lock.json
   - README.md
   - SECURITY.md
-  - .jekyll-cache/
   - artifacts/
   - docs/
   - node_modules/
@@ -131,6 +130,12 @@ exclude:
   - AGENTS.md
   - DESIGN.md
   - ARCHITECTURE.md
+  - FULL-AUDIT-REPORT.md
+  - ACTION-PLAN.md
+  - .map-assets/
+  - .jekyll-cache/
+  - .seo-cache/
+  - .cache/
 
 # Build settings
 defaults:

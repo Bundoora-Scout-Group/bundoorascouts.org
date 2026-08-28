@@ -9,7 +9,7 @@ This repository is a Jekyll static site with Tailwind CSS, data-driven navigatio
 - Markdown: Kramdown with GitHub-flavoured Markdown input.
 - JavaScript: mostly inline in layouts/includes plus `assets/js/site.js`.
 - Animations: GSAP and ScrollTrigger loaded globally in `_layouts/default.html`.
-- Maps: Leaflet loaded globally for expedition pages.
+- Maps: self-hosted Leaflet and MapLibre render OpenStreetMap Shortbread vector tiles, with a plain Leaflet raster fallback when WebGL2 is unavailable.
 
 Configuration lives in `_config.yml`.
 
@@ -133,6 +133,8 @@ The map, timeline, and gallery are rendered by:
 
 Route preprocessing is handled by `scripts/precompute_route.js`.
 
+The map renderer, vector style, glyphs, and sprites are committed under `assets/vendor/` and `assets/map/`. Run `npm ci` followed by `npm run build:maps` to refresh them from the pinned, checksum-verified sources in `scripts/build_map_assets.mjs`. Do not hand-edit those generated map assets.
+
 ## Assets
 
 Reusable design assets live in `assets/images/`. Content-specific media lives in `uploads/`.
@@ -165,4 +167,3 @@ When adding JavaScript, keep it local to the component unless it is truly global
 The site excludes docs, package files, generated/cache folders, scripts, and root agent guide files through `_config.yml`.
 
 If adding contributor-only documentation, make sure it is excluded from the build.
-

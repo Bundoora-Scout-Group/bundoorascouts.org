@@ -1,7 +1,18 @@
 {
+  "scripts": {
+    "build:maps": "node scripts/build_map_assets.mjs",
+    "test:maps": "node --test scripts/test_map_base_layer.mjs"
+  },
   "dependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19"
+  },
+  "devDependencies": {
+    "@maplibre/maplibre-gl-leaflet": "^0.1.4",
+    "@versatiles/style": "^5.13.1",
+    "leaflet": "^1.9.4",
+    "maplibre-gl": "^5.24.0",
+    "tar": "^7.5.22"
   }
 }

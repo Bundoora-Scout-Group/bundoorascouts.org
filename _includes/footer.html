@@ -28,8 +28,8 @@
   </div>
 
   <script>
-    window.addEventListener('load', function () {
-      if (typeof L === 'undefined') return;
+    window.addEventListener('load', async function () {
+      if (typeof L === 'undefined' || typeof window.BundooraMaps === 'undefined') return;
 
       const map = L.map('footer-map', {
         center: [-37.70468, 145.06311],
@@ -40,11 +40,7 @@
         touchZoom: L.Browser.mobile
       });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-      }).addTo(map);
+      await window.BundooraMaps.addBaseLayer(map);
 
       const icon = L.divIcon({
         className: 'bg-transparent',

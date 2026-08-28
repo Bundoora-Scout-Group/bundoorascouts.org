@@ -6,9 +6,12 @@ _site
 .cspell
 .frontmatter
 .cache
+.map-assets/
 frontmatter.json
 scratch/
 vendor/
+!assets/vendor/
+!assets/vendor/**
 node_modules/
 .DS_Store
 artifacts/
