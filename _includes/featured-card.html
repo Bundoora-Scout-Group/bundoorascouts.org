@@ -48,10 +48,10 @@
           {% if person and author_slug != "group" %}
             <a href="{{ person.url }}" class="w-full h-full">
               <img src="/assets/images/people/{{ author_slug }}.jpg" alt="{{ person.name }}" width="80" height="80" loading="lazy" decoding="async"
-                class="w-full h-full object-cover" onerror="this.src='/assets/images/logo.png'">
+                class="w-full h-full object-cover" onerror="this.src='/assets/images/logo.svg'">
             </a>
           {% else %}
-          <img src="/assets/images/logo.png" alt="Bundoora Scouts" width="80" height="80" loading="lazy" decoding="async" class="w-full h-full object-cover">
+          <img src="/assets/images/logo.svg" alt="Bundoora Scouts" width="80" height="80" loading="lazy" decoding="async" class="w-full h-full object-cover">
           {% endif %}
         </div>
         <span class="text-[10px] sm:text-sm font-black text-primary capitalize">

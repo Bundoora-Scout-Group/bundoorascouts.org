@@ -8,9 +8,9 @@
   leader_tagline: The strategic core of Bundoora Scouts.
   active: false
   show_on_leaders: true
-  logo-light: /assets/images/logo.png
-  logo-dark: /assets/images/logo.png
-  logo-crop: /assets/images/logo.png
+  logo-light: /assets/images/logo.svg
+  logo-dark: /assets/images/logo.svg
+  logo-crop: /assets/images/logo.svg
 
 - name: Joey Scouts
   shortname: Joeys

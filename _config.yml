@@ -13,7 +13,7 @@ onboarding_url: "https://extranet.scoutsvictoria.com.au/scoutonline/public/onboa
 
 # SEO
 locale: en_AU
-logo: /assets/images/logo.png
+logo: /assets/images/logo.svg
 social:
   name: Bundoora Scout Group
   links:

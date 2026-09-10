@@ -13,7 +13,7 @@ layout: default
 {% if person and author_name != "Group" %}
 {% assign avatar_src = "/assets/images/people/" | append: author_slug | append: ".jpg" %}
 {% else %}
-{% assign avatar_src = "/assets/images/logo.png" %}
+{% assign avatar_src = "/assets/images/logo.svg" %}
 {% endif %}
 {% endif %}
 {% assign current_date = "now" | date: "%Y-%m-%d" %}
@@ -75,7 +75,7 @@ layout: default
               {% if person %}
               <a href="{{ person.url }}" class="w-full h-full">
                 <img src="{{ avatar_src }}" alt="{{ author_name }}" width="80" height="80" loading="lazy" decoding="async" class="w-full h-full object-cover"
-                  onerror="this.src='/assets/images/logo.png'">
+                  onerror="this.src='/assets/images/logo.svg'">
               </a>
               {% else %}
               <span class="material-symbols-outlined text-white" aria-hidden="true">person</span>

@@ -14,7 +14,7 @@ layout: default
 {% assign avatar_src = "/assets/images/people/" | append: author_slug | append: ".jpg" %}
 {% assign show_profile_card = true %}
 {% else %}
-{% assign avatar_src = "/assets/images/logo.png" %}
+{% assign avatar_src = "/assets/images/logo.svg" %}
 {% assign show_profile_card = false %}
 {% endif %}
 {% endif %}
@@ -65,11 +65,11 @@ layout: default
               {% if person %}
                 <a href="{{ person.url }}" class="w-full h-full">
                   <img src="{{ avatar_src }}" alt="{{ author_name }}" width="80" height="80" loading="eager" class="w-full h-full object-cover"
-                    onerror="this.src='/assets/images/logo.png'">
+                    onerror="this.src='/assets/images/logo.svg'">
                 </a>
               {% else %}
                 <img src="{{ avatar_src }}" alt="{{ author_name }}" width="80" height="80" loading="eager" class="w-full h-full object-cover"
-                  onerror="this.src='/assets/images/logo.png'">
+                  onerror="this.src='/assets/images/logo.svg'">
               {% endif %}
             </div>
             <span class="font-bold text-sm capitalize">

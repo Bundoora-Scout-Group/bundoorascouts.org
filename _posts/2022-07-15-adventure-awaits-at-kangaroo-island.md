@@ -72,14 +72,14 @@ activities:
     description: "Visit the historic lighthouse and explore the rugged coast."
 groups:
   - name: "Bundoora Scouts"
-    image: "/assets/images/logo.png"
+    image: "/assets/images/logo.svg"
     description: "Trip Organizers"
   - name: "Upwey Scouts"
-    image: "/assets/images/logo.png"
+    image: "/assets/images/logo.svg"
   - name: "Gembrook Scouts"
-    image: "/assets/images/logo.png"
+    image: "/assets/images/logo.svg"
   - name: "Carlton Scouts"
-    image: "/assets/images/logo.png"
+    image: "/assets/images/logo.svg"
 safety: true
 contactform: true
 completed: true

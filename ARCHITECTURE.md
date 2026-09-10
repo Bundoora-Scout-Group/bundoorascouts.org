@@ -148,7 +148,7 @@ Common asset groups:
 - `uploads/sections/<section>/`: section-specific photos.
 - `uploads/trip/<trip>/`: trip media.
 
-Use root-relative paths such as `/assets/images/logo.png` and `/uploads/hero/example.jpg`.
+Use root-relative paths such as `/assets/images/logo.svg` and `/uploads/hero/example.jpg`.
 
 ## CSS And JavaScript
 

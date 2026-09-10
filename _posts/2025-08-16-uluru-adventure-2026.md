@@ -70,7 +70,7 @@ activities:
     description: "Venture underground into a historic silver mine and discover mining history."
 groups:
   - name: "Bundoora Scouts"
-    image: "/assets/images/logo.png"
+    image: "/assets/images/logo.svg"
     description: "Trip Organizers"
   - name: "Heany Park Scouts"
     image: "/uploads/2025-08-16-uluru-adventure-2026/heany-park.png"
