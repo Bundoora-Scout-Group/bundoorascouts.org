@@ -1,0 +1,14 @@
+improvements_url: "https://scouts.com.au/what-we-do/youth-program/improvements/"
+transition_url: "https://resources.scouts.com.au/portal/en/kb/articles/achievement-pathways-improvements-changes-and-transition"
+resources_url: "https://resources.scouts.com.au/"
+
+milestones:
+  - name: "Milestone 1"
+    participates_per_challenge_area: 6
+    leads: 2
+  - name: "Milestone 2"
+    participates_per_challenge_area: 5
+    leads: 4
+  - name: "Milestone 3"
+    participates_per_challenge_area: 4
+    leads: 6

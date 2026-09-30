@@ -52,7 +52,13 @@
   </div>
 
   <div class="mt-8">
-    {% include achievement-pathway-source-link.html url=page.peak_award.source_url label="Scouts Victoria Peak Award overview" %}
+    <div class="mb-6 rounded-xl border border-secondary/20 bg-secondary-container/40 p-5">
+      <h3 class="font-headline text-lg font-bold text-primary mb-2">Outdoor Adventure Skills counting</h3>
+      <p class="text-sm leading-relaxed text-on-surface-variant">
+        Each completed Stage 7, 8, or 9 counts as two Outdoor Adventure Skills progressions towards the Peak Award total.
+      </p>
+    </div>
+    {% include achievement-pathway-source-link.html url=site.data.achievement_pathway.improvements_url label="Scouts Australia Achievement Pathways improvements" %}
   </div>
 </div>
 

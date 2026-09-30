@@ -15,14 +15,11 @@ pathway:
   milestones:
     requirement: "Complete Milestone 3"
     url: "https://scoutsvictoria.com.au/age-sections-adults/scouts/scout-program/program-essentials-milestones/"
-    milestone_1: { label: "Participate", url: "https://scoutsvictoria.com.au/age-sections-adults/scouts/scout-program/program-essentials-milestones/" }
-    milestone_2: { label: "Assist", url: "https://scoutsvictoria.com.au/age-sections-adults/scouts/scout-program/program-essentials-milestones/" }
-    milestone_3: { label: "Lead", url: "https://scoutsvictoria.com.au/age-sections-adults/scouts/scout-program/program-essentials-milestones/" }
   oas:
     summary: "Outdoor Adventure Skills are the link between adventurous activities and the youth program. They enable youth members of all ages to access the basic skills for a range of activities, and progress through to high skill levels across nine broad activity areas."
     url: /sections/scouts/outdoor-skills
   sia:
-    summary: "Special Interest Areas encourage Scouts to try new things and pursue existing interests. Scouts set their own goals in one of the six Special Interest Areas, enabling them to design a project that interests and challenges them personally."
+    summary: "Special Interest Areas encourage Scouts to try new things and pursue existing interests. Scouts choose a defined project option or the 'your own idea' option, then set a goal that interests and challenges them personally."
     url: /sections/scouts/special-interests
   adventurous_journey:
     summary: "The Adventurous Journey is a key part of your Milestone 3 and Peak Award in the Scout section. It’s your chance to put your outdoor and leadership skills into action by planning and leading a real expedition - usually something like a bushwalk, paddle trip, or cycling journey over multiple days."

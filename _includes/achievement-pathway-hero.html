@@ -37,14 +37,20 @@
       </p>
       {% endif %}
 
-      {% if page.ap_page == 'milestones' and page.pathway.peak_award.name %}
       <div class="hero-meta">
         <span class="hero-meta-item">
-          <span class="material-symbols-outlined hero-meta-icon" aria-hidden="true">workspace_premium</span>
-        <span class="font-bold">Target: {{ page.pathway.peak_award.name }}</span>
+          <span class="material-symbols-outlined hero-meta-icon" aria-hidden="true">info</span>
+          <span>Updated 23 September 2026</span>
         </span>
+        <a href="{{ site.data.achievement_pathway.improvements_url }}" target="_blank" rel="noopener" class="hero-meta-item hover:text-white hover:underline">
+          <span>National update</span>
+          <span class="material-symbols-outlined hero-meta-icon" aria-hidden="true">open_in_new</span>
+        </a>
+        <a href="{{ site.data.achievement_pathway.transition_url }}" target="_blank" rel="noopener" class="hero-meta-item hover:text-white hover:underline">
+          <span>Terrain transition</span>
+          <span class="material-symbols-outlined hero-meta-icon" aria-hidden="true">open_in_new</span>
+        </a>
       </div>
-      {% endif %}
     </div>
   </div>
 </header>

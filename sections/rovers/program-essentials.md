@@ -19,7 +19,7 @@ essentials:
       description: "Completed at the start of the Rover Scout section, including during transition into the section."
     - name: "Milestones"
       icon: "flag"
-      description: "Recognises participating, assisting, and leading in activities based on the four Challenge Areas."
+      description: "Recognises participation across the four Challenge Areas and age-appropriate leadership in the regular Rover Scout program."
 ---
 
 {% include achievement-pathway-pe.html %}

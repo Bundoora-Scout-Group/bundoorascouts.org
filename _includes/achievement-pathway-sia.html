@@ -50,6 +50,21 @@
     </div>
   </section>
 
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-secondary-container/40 p-6 rounded-xl border border-secondary/20">
+      <h2 class="font-headline text-xl font-bold text-primary mb-3">Choose a project option</h2>
+      <p class="text-on-surface-variant leading-relaxed">
+        Each Special Interest Area now has defined project options. Choose one of those options, or choose the <strong>your own idea</strong> option, then build a goal and project around it.
+      </p>
+    </div>
+    <div class="bg-secondary-container/40 p-6 rounded-xl border border-secondary/20">
+      <h2 class="font-headline text-xl font-bold text-primary mb-3">Unit Council approval</h2>
+      <p class="text-on-surface-variant leading-relaxed">
+        Two Unit Council members can approve either a proposed project or a completed project.
+      </p>
+    </div>
+  </section>
+
   <!-- The 6 Areas -->
   <section>
     <h2 class="font-display font-black text-3xl text-primary mb-8 tracking-tight border-b border-surface-variant pb-4">
@@ -78,9 +93,9 @@
     <div class="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 opacity-10"
       style="background-color: {{ accent }};"></div>
 
-    <h2 class="text-3xl font-headline font-bold text-primary mb-4 relative z-10">Inspiration</h2>
+    <h2 class="text-3xl font-headline font-bold text-primary mb-4 relative z-10">Local inspiration</h2>
     <p class="font-body text-on-surface-variant mb-12 relative z-10 leading-relaxed">
-      Need ideas? Here are examples of what a project might look like for this section.
+      These examples can help start a conversation, but they are not the national project-option list. Use the current program resources when choosing the formal option for a project.
     </p>
 
     <div class="space-y-8 relative z-10">
@@ -101,7 +116,7 @@
   </section>
   {% endif %}
 
-  {% include achievement-pathway-source-link.html url=source_url label="Scouts Victoria Special Interest Areas overview" %}
+  {% include achievement-pathway-source-link.html url=site.data.achievement_pathway.resources_url label="Scouts Australia program resources" %}
 
   <!-- Back to Overview -->
   <div class="text-center">

@@ -19,7 +19,7 @@ essentials:
       description: "Completed at the start of the Joey Scout section, including during transition into the section."
     - name: "Milestones"
       icon: "flag"
-      description: "Recognises participation, assisting, leading, and reflection through the regular Joey Scout program."
+      description: "Recognises participation across the four Challenge Areas and age-appropriate leadership in the regular Joey Scout program."
 ---
 
 {% include achievement-pathway-pe.html %}

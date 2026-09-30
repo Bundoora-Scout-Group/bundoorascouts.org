@@ -1,5 +1,6 @@
 {% assign section = site.data.sections | where: "slug", page.section_slug | first %}
 {% assign accent = section.colour | default: "#3f5e94" %}
+{% assign milestone_updates = site.data.achievement_pathway.milestones %}
 
 <!-- Vertical Journey Timeline (Centered) -->
 <div class="relative p-8 rounded-2xl overflow-hidden">
@@ -87,41 +88,22 @@
       <div class="relative z-10">
         <h3 class="font-headline text-2xl font-black text-primary mt-1 mb-8">Milestones</h3>
 
-        <div class="flex flex-col md:flex-row items-center md:items-start justify-evenly gap-6 relative min-h-[150px]">
-          <!-- Milestone 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+          {% for milestone in milestone_updates %}
           <div class="relative z-10 flex flex-col items-center gap-4 px-4">
             <div class="w-34 h-34 flex items-center justify-center">
-              <img src="/assets/images/sections/milestone-1-{{ page.section_slug }}.svg" alt="" aria-hidden="true"
+              <img src="/assets/images/sections/milestone-{{ forloop.index }}-{{ page.section_slug }}.svg" alt="" aria-hidden="true"
                 class="w-full h-full object-contain drop-shadow-sm" />
             </div>
-            <div class="text-center bg-surface-container-low px-3 py-1.5 rounded-lg shadow-sm">
-              <p class="font-bold text-on-surface">{{ page.pathway.milestones.milestone_1.label | default: 'Participate'
-                }}</p>
-            </div>
-          </div>
-
-          <!-- Milestone 2 -->
-          <div class="relative z-10 flex flex-col items-center gap-4 px-4">
-            <div class="w-34 h-34 flex items-center justify-center">
-              <img src="/assets/images/sections/milestone-2-{{ page.section_slug }}.svg" alt="" aria-hidden="true"
-                class="w-full h-full object-contain drop-shadow-sm" />
-            </div>
-            <div class="text-center bg-surface-container-low px-3 py-1.5 rounded-lg shadow-sm">
-              <p class="font-bold text-on-surface">{{ page.pathway.milestones.milestone_2.label | default: 'Assist' }}
+            <div class="w-full text-center bg-surface-container-low px-3 py-2 rounded-lg shadow-sm">
+              <p class="font-bold text-on-surface">{{ milestone.name }}</p>
+              <p class="mt-1 text-xs leading-relaxed text-on-surface-variant">
+                {{ milestone.participates_per_challenge_area }} participates per Challenge Area<br />
+                {{ milestone.leads }} leads
               </p>
             </div>
           </div>
-
-          <!-- Milestone 3 -->
-          <div class="relative z-10 flex flex-col items-center gap-4 px-4">
-            <div class="w-34 h-34 flex items-center justify-center">
-              <img src="/assets/images/sections/milestone-3-{{ page.section_slug }}.svg" alt="" aria-hidden="true"
-                class="w-full h-full object-contain drop-shadow-sm" />
-            </div>
-            <div class="text-center bg-surface-container-low px-3 py-1.5 rounded-lg shadow-sm">
-              <p class="font-bold text-on-surface">{{ page.pathway.milestones.milestone_3.label | default: 'Lead' }}</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
 
         <div class="flex justify-center mt-8">

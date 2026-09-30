@@ -25,7 +25,17 @@
       <div class="bg-surface-container-high p-6 rounded-xl flex flex-col gap-4">
         <div>
           <h3 class="font-headline text-xl font-bold mb-2">{{ item.name }}</h3>
+          {% if item.name == "Introduction to Scouting" %}
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Covers the essentials for members who are new to Scouting. The Unit can use the national video, a picture book for younger members, a short discussion, or interactive games.
+          </p>
+          {% elsif item.name == "Introduction to Section" %}
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            A checklist of welcome activities completed in the first few weeks, including when moving up from the section below. It is part of the welcome, not a test.
+          </p>
+          {% else %}
           <p class="text-sm text-on-surface-variant leading-relaxed">{{ item.description }}</p>
+          {% endif %}
         </div>
         <div class="mt-auto pt-2 flex items-center">
           {% if item.name == "Introduction to Scouting" %}
@@ -42,13 +52,11 @@
   <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/10">
     <h3 class="font-headline text-xl font-bold text-primary mb-2">Part of the regular program</h3>
     <p class="text-on-surface-variant leading-relaxed">
-      Program Essentials are completed through attendance and active participation in the section program. They are not separate badge tasks; they are built into regular Scouting, with reflection helping each Scout notice how they are growing.
+      Program Essentials are completed through attendance and active participation in the section program. The introductions welcome members into Scouting and their section, while Milestones recognise participation and age-appropriate leadership in the regular program.
     </p>
   </div>
 
-  {% if page.essentials.source_url %}
-    {% include achievement-pathway-source-link.html url=page.essentials.source_url label="Scouts Victoria Program Essentials overview" %}
-  {% endif %}
+  {% include achievement-pathway-source-link.html url=site.data.achievement_pathway.improvements_url label="Scouts Australia Achievement Pathways improvements" %}
 </div>
 
 <div class="text-center mt-8">

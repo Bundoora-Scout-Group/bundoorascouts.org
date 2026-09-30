@@ -1,4 +1,5 @@
 {% assign section = site.data.sections | where: "slug", page.section_slug | first %}
+{% assign milestone_updates = site.data.achievement_pathway.milestones %}
 
 <div class="bg-surface-container-low p-8 md:p-12 rounded-xl mb-12 flex flex-col gap-10">
   <div>
@@ -11,12 +12,16 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     {% for item in page.milestones.items %}
+      {% assign milestone = milestone_updates[forloop.index0] %}
       <div class="bg-surface-container-high p-6 rounded-xl text-center flex flex-col items-center">
         <div class="w-34 h-34 mb-4 flex items-center justify-center">
           <img src="{{ item.image }}" alt="" aria-hidden="true" class="w-full h-full object-contain drop-shadow-sm" />
         </div>
         <h3 class="font-headline text-xl font-bold mb-2">{{ item.name }}</h3>
-        <p class="text-sm text-on-surface-variant">Focuses on <b>{{ item.focus }}</b>. {{ item.description }}</p>
+        <p class="text-sm text-on-surface-variant">
+          <strong>{{ milestone.participates_per_challenge_area }} participates</strong> from each Challenge Area and
+          <strong>{{ milestone.leads }} leads</strong> from any Challenge Area.
+        </p>
       </div>
     {% endfor %}
   </div>
@@ -25,7 +30,7 @@
     <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/10">
       <h3 class="font-headline text-xl font-bold text-primary mb-3">How they are earned</h3>
       <p class="text-on-surface-variant leading-relaxed">
-        Milestones are built into regular section nights, activities, camps, and adventures. Scouts work through them by participating, assisting, leading, and reviewing their experience with their Unit.
+        Milestones are built into regular section nights, activities, camps, and adventures. A participate is attending an activity. A lead is helping to plan, run, or review an activity at a level that suits the section.
       </p>
     </div>
 
@@ -37,7 +42,14 @@
     </div>
   </div>
 
-  {% include achievement-pathway-source-link.html url=page.milestones.source_url label="Scouts Victoria Milestones overview" %}
+  <div class="bg-secondary-container/40 p-6 rounded-xl border border-secondary/20">
+    <h3 class="font-headline text-xl font-bold text-primary mb-3">What happened to assists?</h3>
+    <p class="text-on-surface-variant leading-relaxed">
+      Assists are no longer recorded separately. Work that previously counted as an assist can now count as a lead, and a Unit may award more than one lead for the same activity.
+    </p>
+  </div>
+
+  {% include achievement-pathway-source-link.html url=site.data.achievement_pathway.improvements_url label="Scouts Australia Achievement Pathways improvements" %}
 </div>
 
 <!-- Back to Overview -->
