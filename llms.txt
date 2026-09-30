@@ -29,7 +29,7 @@ Contact: https://bundoorascouts.org/contact
 
 ## All posts
 
-{% for post in site.posts %}- [{{ post.title }}](https://raw.githubusercontent.com/monkeyatcomputer/bundoorascouts.org/refs/heads/master/{{ post.path }})
+{% for post in site.posts %}- [{{ post.title }}](https://raw.githubusercontent.com/Bundoora-Scout-Group/bundoorascouts.org/refs/heads/master/{{ post.path }})
 {% endfor %}
 
 ## Notes
