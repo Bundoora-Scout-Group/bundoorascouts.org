@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Scout Hall Hire"
+title: "Bundoora Scout Hall Hire - Community Venue in Bundoora"
 permalink: /about/hall-hire
 redirect_from: [/about-us/hall-hire, /hall-hire/]
 badge: "Venue Hire"
@@ -8,7 +8,7 @@ description: "The Bundoora Scout Hall is a welcoming, versatile venue in N.J. Te
 image: /assets/images/about/hall-hire.jpg
 ---
 
-Located within **N.J. Telfer Reserve**, Bundoora Scout Hall offers a welcoming, versatile venue ideal for community groups, classes, meetings, and private functions. 
+Located at **20 Noorong Avenue, Bundoora** within **N.J. Telfer Reserve**, Bundoora Scout Hall offers a welcoming, versatile venue ideal for community groups, classes, meetings, and private functions.
 
 Conveniently located just a short walk from the Route 86 tram or route 566/902 bus, the hall is also close to Bundoora Park Farm, Mt Cooper Lookout, and the Gresswell Forest Wildlife Reserve, making it an excellent choice for both local and visiting groups.
 
@@ -91,6 +91,70 @@ Hall hire is available when the venue is not in use by the Bundoora Scout Group,
 > **Scouting Compliance:** The proposed use must not interfere with Scouting activities and must comply with Scouts Victoria policies and Banyule Council lease conditions.
 
 [Read the full Terms and Conditions (PDF)](/uploads/hall-hire/Scouts%20Victoria%20SpacetoCo%20Hall%20Hire%20Terms%20and%20Conditions%202025.pdf){: .text-secondary .font-bold .underline}
+
+## Frequently Asked Questions
+
+<section class="not-prose mt-8 mb-16 space-y-4" aria-label="Hall hire frequently asked questions">
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      What parking is available?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>There are 32 free off-street parking spaces. These spaces are shared with the neighbouring community hall and church, so availability cannot be guaranteed. The Route 86 tram and routes 566 and 902 buses are also within walking distance.</p>
+    </div>
+  </details>
+
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      How many people can the hall accommodate?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>The approximately 240m² main hall can accommodate up to 100 people seated or 200 standing. Trestle tables and chairs are included; please check that your planned layout and activity are suitable when booking.</p>
+    </div>
+  </details>
+
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      Is the hall accessible?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>Yes. The venue is listed as wheelchair friendly and includes an ambulant toilet. If you or a guest has a particular access requirement, <a href="/contact" class="font-bold text-secondary underline">contact us</a> before booking so we can confirm the facilities will meet your needs.</p>
+    </div>
+  </details>
+
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      Are there restrictions on how the hall can be used?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>Yes. The hall cannot be used for 18th or 21st birthday celebrations, schoolies events, commercial or retail activities, publicly advertised partisan political events, gambling, or activities involving alcohol. Teenage birthday parties are only permitted for current Scouts Victoria members and must be supervised by responsible adults. Please read the <a href="/uploads/hall-hire/Scouts%20Victoria%20SpacetoCo%20Hall%20Hire%20Terms%20and%20Conditions%202025.pdf" class="font-bold text-secondary underline">full Terms and Conditions</a> before booking.</p>
+    </div>
+  </details>
+
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      How much does hall hire cost?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>Casual hire starts from $50 per hour, with a minimum booking of two hours. SpacetoCo will show the current rate and full price for your selected date and time before you confirm the booking. Please <a href="/contact" class="font-bold text-secondary underline">contact us</a> to discuss pricing for regular or longer-term hire.</p>
+    </div>
+  </details>
+
+  <details class="group surface-card overflow-hidden">
+    <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-headline font-bold text-lg text-primary [&::-webkit-details-marker]:hidden">
+      How do I make a booking?
+      <span class="material-symbols-outlined shrink-0 text-secondary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+    </summary>
+    <div class="border-t border-outline-variant/30 px-6 py-5 text-on-surface-variant leading-relaxed">
+      <p>For a casual or one-off hire, <a href="https://www.spacetoco.com/space/bundoora-scout-hall" class="font-bold text-secondary underline" target="_blank" rel="noopener">book through SpacetoCo</a> to check live availability and confirm your booking. For recurring or longer-term hire, please <a href="/contact" class="font-bold text-secondary underline">send us an enquiry</a>.</p>
+    </div>
+  </details>
+</section>
 
 ## Gallery
 

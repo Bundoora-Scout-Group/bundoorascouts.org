@@ -42,7 +42,7 @@ image: /assets/images/about/contact-us.jpg
         <div class="flex flex-col gap-4">
           <span class="text-sm font-label font-semibold text-on-surface-variant uppercase tracking-wider">What can we help with? <span class="text-error">*</span> <span class="normal-case font-normal opacity-70">(Select at least one)</span></span>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {% assign help_options = "Joey Scouts - 5 to 7 Years,Cub Scouts - 8 to 10 Years,Scouts - 11 to 14 Years,Venturer Scouts - 15 to 17 Years,Rovers - 18 to 25 Years,Leaders and Adult Members,Hall Hire,Other" | split: "," %}
+            {% assign help_options = "Joey Scouts - 5 to 8 Years,Cub Scouts - 8 to 11 Years,Scouts - 11 to 15 Years,Venturer Scouts - 15 to 17 Years,Rovers - 18 to 26 Years,Leaders and Adult Members,Hall Hire,Other" | split: "," %}
             {% for option in help_options %}
             <label class="form-check cursor-pointer">
               <input type="checkbox" name="help_with" value="{{ option }}" class="w-5 h-5 rounded border-outline text-primary focus:ring-secondary/30">

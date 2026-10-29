@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Home
-description: Bundoora Scouts – The Modern Trailfinder. Preparing youth for the trail ahead through adventure, leadership, and community.
+title: Joeys, Cubs, Scouts, Rovers & Youth Adventures
+description: Discover Joey Scouts, Cub Scouts, Scouts, Venturers and Rovers at Bundoora Scout Group. Explore weekly activities, camping and how to join.
 image: "/uploads/hero/aerial.jpg"
 ---
 
@@ -14,10 +14,10 @@ image: "/uploads/hero/aerial.jpg"
   <div class="site-container hero-content">
     <div class="hero-copy">
       <span class="eyebrow eyebrow--tertiary">
-        The Modern Trailfinder
+        Adventure Awaits in Bundoora
       </span>
       <h1 class="hero-title">
-        Adventure Awaits in <span class="hero-title-accent">Bundoora.</span>
+        Join Bundoora Scouts – Adventure, Friendship & Skills for Life
       </h1>
       <p class="hero-description">
         Empowering youth through outdoor education, leadership, and community. Join the journey from Joeys to Rovers.
