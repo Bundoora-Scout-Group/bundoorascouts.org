@@ -2,9 +2,8 @@
 layout: section
 title: "Rover Scouts"
 permalink: /sections/rovers
-description: "Service, adventure, and fellowship. Rovers are self-governing young adults (18-25) who create their own adventures and give back to the community."
+description: "Service, adventure, and fellowship. Rovers are self-governing young adults aged 18 to 26 who create their own adventures and give back to the community."
 tagline: "Service, adventure, fellowship."
-age_range: "18–25"
 colour: "#DC291E"
 colour_dark: "#DC291E"
 icon: directions_bike
@@ -32,7 +31,7 @@ intro:
   title: "Beyond the Horizon"
   paragraphs:
     - "\"Rovers do stuff\" is a popular sentiment because we do in fact do lots of stuff! As Rovers, we create our own adventure from start to finish, building skills widely recognised outside of Scouting."
-    - "Handfield Rover Unit is hosted at the Bundoora Scout Hall Rover Den and welcomes all young adults from 18 to 25 years. You don’t need any prior Scouting experience – just a 'give it a go' attitude!"
+    - "Handfield Rover Unit is hosted at the Bundoora Scout Hall Rover Den and welcomes all young adults from 18 to 26 years. You don’t need any prior Scouting experience – just a 'give it a go' attitude!"
   rotation: "rotate-2"
 testimonials:
   - quote: "Rovers is a great way to meet new people and have amazing experiences."

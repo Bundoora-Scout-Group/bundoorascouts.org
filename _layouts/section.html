@@ -28,7 +28,7 @@ layout: default
       </div>
       {% endif %}
       <span class="eyebrow eyebrow--section" style="--eyebrow-background: {{ page.colour | default: '#3f5e94' }};">
-        Ages {{ page.age_range }}
+        Ages {{ section.age_range | default: page.age_range }}
       </span>
       <h1 class="hero-title">
         {{ page.title }}

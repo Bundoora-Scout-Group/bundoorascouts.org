@@ -42,8 +42,23 @@ image: /assets/images/about/contact-us.jpg
         <div class="flex flex-col gap-4">
           <span class="text-sm font-label font-semibold text-on-surface-variant uppercase tracking-wider">What can we help with? <span class="text-error">*</span> <span class="normal-case font-normal opacity-70">(Select at least one)</span></span>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {% assign help_options = "Joey Scouts - 5 to 8 Years,Cub Scouts - 8 to 11 Years,Scouts - 11 to 15 Years,Venturer Scouts - 15 to 17 Years,Rovers - 18 to 26 Years,Leaders and Adult Members,Hall Hire,Other" | split: "," %}
-            {% for option in help_options %}
+            {% for section in site.data.sections %}
+            {% if section.active %}
+              {% if section.slug == "adult" %}
+                {% assign option_label = "Leaders and Adult Members" %}
+              {% elsif section.slug == "rovers" %}
+                {% assign option_label = "Rovers - " | append: section.age_range | append: " Years" %}
+              {% else %}
+                {% assign option_label = section.name | append: " - " | append: section.age_range | append: " Years" %}
+              {% endif %}
+            <label class="form-check cursor-pointer">
+              <input type="checkbox" name="help_with" value="{{ option_label }}"{% if section.sectionid %} data-section-name="{{ section.name }}"{% endif %} class="w-5 h-5 rounded border-outline text-primary focus:ring-secondary/30">
+              <span class="text-on-surface text-sm">{{ option_label }}</span>
+            </label>
+            {% endif %}
+            {% endfor %}
+            {% assign additional_help_options = "Hall Hire,Other" | split: "," %}
+            {% for option in additional_help_options %}
             <label class="form-check cursor-pointer">
               <input type="checkbox" name="help_with" value="{{ option }}" class="w-5 h-5 rounded border-outline text-primary focus:ring-secondary/30">
               <span class="text-on-surface text-sm">{{ option }}</span>
@@ -126,22 +141,11 @@ image: /assets/images/about/contact-us.jpg
             const extranetButtons = Array.from(document.querySelectorAll('.extranet-btn'));
             const hallHireSuggestion = document.getElementById('hall-hire-suggestion');
 
-            const sectionMap = {
-              'Joey Scouts - 5 to 7 Years': 'Joey Scouts',
-              'Cub Scouts - 8 to 10 Years': 'Cub Scouts',
-              'Scouts - 11 to 14 Years': 'Scouts'
-            };
-
             function updateExtranetVisibility() {
-              let showExtranet = false;
-              const selectedSections = [];
-
-              checkboxes.forEach(cb => {
-                if (cb.checked && sectionMap[cb.value]) {
-                  showExtranet = true;
-                  selectedSections.push(sectionMap[cb.value]);
-                }
-              });
+              const selectedSections = checkboxes
+                .filter(cb => cb.checked && cb.dataset.sectionName)
+                .map(cb => cb.dataset.sectionName);
+              const showExtranet = selectedSections.length > 0;
 
               if (showExtranet) {
                 extranetSuggestion.classList.remove('hidden');
