@@ -62,6 +62,7 @@ async function initViewer(root) {
     badgeMeshById: new Map(),
     textureCache: new Map(),
     icons: config.badgeIcons || {},
+    oas: config.oas || {},
     sections: config.sections || [],
     debug: null,
     targetCamera: cameraViews.front
@@ -1216,7 +1217,7 @@ async function loadBadgeTexture(badge, state) {
 
 async function loadBadgeTextureUncached(badge, state) {
   if (badge.icon && state.icons[badge.icon]) {
-    return loadSvgTexture(state.icons[badge.icon], getIconColour(badge, state));
+    return loadSvgTexture(getBadgeIconSvg(badge, state), getIconColour(badge, state));
   }
 
   const assetPath = getBadgeAssetPath(badge, state.section);
@@ -1240,7 +1241,7 @@ async function loadBadgeTextureUncached(badge, state) {
 
 function getBadgeTextureKey(badge, state) {
   if (badge.icon && state.icons[badge.icon]) {
-    return `icon:${badge.icon}:${getIconColour(badge, state)}`;
+    return `icon:${badge.icon}:${getOasStage(badge, state) || ''}:${getIconColour(badge, state)}`;
   }
 
   const assetPath = getBadgeAssetPath(badge, state.section);
@@ -1343,12 +1344,35 @@ function prepareTexture(texture) {
 }
 
 function getIconColour(badge, state) {
+  const oasStage = getOasStage(badge, state);
+  if (oasStage) {
+    return state.oas?.stages?.[String(oasStage)] || badge.icon_colour || badge.fill || '#006649';
+  }
+
   if (badge.icon_colour === 'section') {
     const section = state.sections.find((item) => item.slug === state.section);
     return section?.colour || badge.fill || '#100e4c';
   }
 
   return badge.icon_colour || badge.fill || '#100e4c';
+}
+
+function getBadgeIconSvg(badge, state) {
+  const svg = state.icons[badge.icon] || '';
+  const oasStage = getOasStage(badge, state);
+  return oasStage ? svg.replaceAll('OAS_STAGE', String(oasStage)) : svg;
+}
+
+function getOasStage(badge, state) {
+  if (!badge.icon?.startsWith('oas-')) return null;
+
+  const sectionOas = state.oas?.[state.section];
+  if (!sectionOas) return null;
+
+  const skillSlug = badge.icon.slice(4);
+  const skills = [...(sectionOas.core_skills || []), ...(sectionOas.specialist_skills || [])];
+  const skill = skills.find((item) => String(item.name || '').toLowerCase().replace(/\s+/g, '-') === skillSlug);
+  return Number(skill?.stage || sectionOas.stage_requirement || 1);
 }
 
 function getBadgeAssetPath(badge, sectionSlug) {

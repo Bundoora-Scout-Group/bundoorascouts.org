@@ -1,14 +1,14 @@
 {% assign uniform_sections = site.data.sections | where_exp: "section", "section.slug == 'joeys' or section.slug == 'cubs' or section.slug == 'scouts' or section.slug == 'venturers' or section.slug == 'rovers'" %}
 {% capture badge_icon_sia_all %}{% include icons/sia-all.svg %}{% endcapture %}
-{% capture badge_icon_oas_alpine %}{% include icons/oas-alpine.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_boating %}{% include icons/oas-boating.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_bushcraft %}{% include icons/oas-bushcraft.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_bushwalking %}{% include icons/oas-bushwalking.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_camping %}{% include icons/oas-camping.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_cycling %}{% include icons/oas-cycling.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_paddling %}{% include icons/oas-paddling.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_snorkeling %}{% include icons/oas-snorkeling.svg stage="1" %}{% endcapture %}
-{% capture badge_icon_oas_vertical %}{% include icons/oas-vertical.svg stage="1" %}{% endcapture %}
+{% capture badge_icon_oas_alpine %}{% include icons/oas-alpine.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_boating %}{% include icons/oas-boating.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_bushcraft %}{% include icons/oas-bushcraft.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_bushwalking %}{% include icons/oas-bushwalking.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_camping %}{% include icons/oas-camping.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_cycling %}{% include icons/oas-cycling.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_paddling %}{% include icons/oas-paddling.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_aquatics %}{% include icons/oas-aquatics.svg stage="OAS_STAGE" %}{% endcapture %}
+{% capture badge_icon_oas_vertical %}{% include icons/oas-vertical.svg stage="OAS_STAGE" %}{% endcapture %}
 {% assign uniform_debug_enabled = false %}
 {% if page.badge_debug and jekyll.environment != "production" %}
   {% assign uniform_debug_enabled = true %}
@@ -65,6 +65,7 @@
     {
       "debugEnabled": {{ uniform_debug_enabled | jsonify }},
       "sections": {{ uniform_sections | jsonify }},
+      "oas": {{ site.data.oas | jsonify }},
       "badgePlacement": {{ site.data.badge_placement | jsonify }},
       "badgeIcons": {
         "sia-all": {{ badge_icon_sia_all | strip | jsonify }},
@@ -75,7 +76,7 @@
         "oas-camping": {{ badge_icon_oas_camping | strip | jsonify }},
         "oas-cycling": {{ badge_icon_oas_cycling | strip | jsonify }},
         "oas-paddling": {{ badge_icon_oas_paddling | strip | jsonify }},
-        "oas-snorkeling": {{ badge_icon_oas_snorkeling | strip | jsonify }},
+        "oas-aquatics": {{ badge_icon_oas_aquatics | strip | jsonify }},
         "oas-vertical": {{ badge_icon_oas_vertical | strip | jsonify }}
       }
     }

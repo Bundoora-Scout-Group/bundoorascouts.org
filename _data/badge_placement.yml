@@ -235,10 +235,10 @@ groups:
         shape: rectangle
         fill: "#006649"
         stroke: "#ffffff"
-      - id: oas-snorkeling
-        label: OAS Snorkeling
+      - id: oas-aquatics
+        label: OAS Aquatics
         anchor: left_oas_7
-        icon: oas-snorkeling
+        icon: oas-aquatics
         icon_colour: "#006649"
         shape: rectangle
         fill: "#006649"

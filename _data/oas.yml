@@ -28,7 +28,7 @@ joeys:
     - { name: "Alpine", stage: 1, description: "Cross-country skiing, downhill skiing, snowboarding, and snow survival." }
     - { name: "Cycling", stage: 1, description: "Mountain biking and cycle touring, including maintenance and route planning." }
     - { name: "Vertical", stage: 1, description: "Abseiling, rock climbing, and caving techniques and safety systems." }
-    - { name: "Snorkeling", stage: 1, description: "Snorkeling and SCUBA diving skills, marine environments, and safety." }
+    - { name: "Aquatics", stage: 1, description: "Swimming, lifesaving, snorkelling, surfing, SCUBA diving, and water safety." }
     - { name: "Paddling", stage: 1, description: "Canoeing, kayaking, and sea kayaking across flatwater and whitewater." }
     - { name: "Boating", stage: 1, description: "Sailing and powerboating, including navigation and seamanship." }
 
@@ -45,7 +45,7 @@ cubs:
     - { name: "Alpine", stage: 3, description: "Cross-country skiing, downhill skiing, snowboarding, and snow survival." }
     - { name: "Cycling", stage: 1, description: "Mountain biking and cycle touring, including maintenance and route planning." }
     - { name: "Vertical", stage: 3, description: "Abseiling, rock climbing, and caving techniques and safety systems." }
-    - { name: "Snorkeling", stage: 1, description: "Snorkeling and SCUBA diving skills, marine environments, and safety." }
+    - { name: "Aquatics", stage: 1, description: "Swimming, lifesaving, snorkelling, surfing, SCUBA diving, and water safety." }
     - { name: "Paddling", stage: 3, description: "Canoeing, kayaking, and sea kayaking across flatwater and whitewater." }
     - { name: "Boating", stage: 3, description: "Sailing and powerboating, including navigation and seamanship." }
 
@@ -62,7 +62,7 @@ scouts:
     - { name: "Alpine", stage: 5, description: "Cross-country skiing, downhill skiing, snowboarding, and snow survival." }
     - { name: "Cycling", stage: 5, description: "Mountain biking and cycle touring, including maintenance and route planning." }
     - { name: "Vertical", stage: 4, description: "Abseiling, rock climbing, and caving techniques and safety systems." }
-    - { name: "Snorkeling", stage: 3, description: "Snorkeling and SCUBA diving skills, marine environments, and safety." }
+    - { name: "Aquatics", stage: 3, description: "Swimming, lifesaving, snorkelling, surfing, SCUBA diving, and water safety." }
     - { name: "Paddling", stage: 5, description: "Canoeing, kayaking, and sea kayaking across flatwater and whitewater." }
     - { name: "Boating", stage: 3, description: "Sailing and powerboating, including navigation and seamanship." }
 
@@ -79,7 +79,7 @@ venturers:
     - { name: "Alpine", stage: 6, description: "Cross-country skiing, downhill skiing, snowboarding, and snow survival." }
     - { name: "Cycling", stage: 8, description: "Mountain biking and cycle touring, including maintenance and route planning." }
     - { name: "Vertical", stage: 4, description: "Abseiling, rock climbing, and caving techniques and safety systems." }
-    - { name: "Snorkeling", stage: 3, description: "Snorkeling and SCUBA diving skills, marine environments, and safety." }
+    - { name: "Aquatics", stage: 3, description: "Swimming, lifesaving, snorkelling, surfing, SCUBA diving, and water safety." }
     - { name: "Paddling", stage: 5, description: "Canoeing, kayaking, and sea kayaking across flatwater and whitewater." }
     - { name: "Boating", stage: 3, description: "Sailing and powerboating, including navigation and seamanship." }
 
@@ -96,6 +96,6 @@ rovers:
     - { name: "Alpine", stage: 6, description: "Cross-country skiing, downhill skiing, snowboarding, and snow survival." }
     - { name: "Cycling", stage: 8, description: "Mountain biking and cycle touring, including maintenance and route planning." }
     - { name: "Vertical", stage: 4, description: "Abseiling, rock climbing, and caving techniques and safety systems." }
-    - { name: "Snorkeling", stage: 9, description: "Snorkeling and SCUBA diving skills, marine environments, and safety." }
+    - { name: "Aquatics", stage: 9, description: "Swimming, lifesaving, snorkelling, surfing, SCUBA diving, and water safety." }
     - { name: "Paddling", stage: 6, description: "Canoeing, kayaking, and sea kayaking across flatwater and whitewater." }
     - { name: "Boating", stage: 8, description: "Sailing and powerboating, including navigation and seamanship." }
