@@ -87,8 +87,8 @@
       {% assign skill_stage = skill.stage | default: section_oas.stage_requirement %}
       {% assign stage_str = skill_stage | append: "" %}
       {% assign stage_color = site.data.oas.stages[stage_str] | default: "#006649" %}
-      <div
-        class="bg-surface-container-lowest p-6 rounded-xl border border-surface-container-highest/30 shadow-[0_4px_20px_rgba(38,38,97,0.05)] hover:shadow-[0_8px_30px_rgba(38,38,97,0.1)] transition-all duration-300 group text-center">
+      <div id="{{ filename }}"
+        class="scroll-mt-24 bg-surface-container-lowest p-6 rounded-xl border border-surface-container-highest/30 shadow-[0_4px_20px_rgba(38,38,97,0.05)] hover:shadow-[0_8px_30px_rgba(38,38,97,0.1)] transition-all duration-300 group text-center">
         <div aria-hidden="true"
           class="w-32 aspect-[3/2] mb-6 mx-auto transition-transform duration-300 group-hover:scale-110 filter drop-shadow-md [&>svg]:w-full [&>svg]:h-full"
           style="color: {{ stage_color }};">
@@ -107,8 +107,8 @@
       {% assign skill_stage = skill.stage | default: section_oas.stage_requirement %}
       {% assign stage_str = skill_stage | append: "" %}
       {% assign stage_color = site.data.oas.stages[stage_str] | default: "#006649" %}
-      <div
-        class="bg-surface-container-low p-6 rounded-xl hover:shadow-[0_8px_30px_rgba(38,38,97,0.1)] transition-all duration-300 group text-center">
+      <div id="{{ filename }}"
+        class="scroll-mt-24 bg-surface-container-low p-6 rounded-xl hover:shadow-[0_8px_30px_rgba(38,38,97,0.1)] transition-all duration-300 group text-center">
         <div aria-hidden="true"
           class="w-32 aspect-[3/2] mb-6 mx-auto transition-transform duration-300 group-hover:scale-110 filter drop-shadow-md [&>svg]:w-full [&>svg]:h-full"
           style="color: {{ stage_color }};">

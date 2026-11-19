@@ -783,6 +783,7 @@
     width: 100%;
     height: 100%;
     min-height: 26rem;
+    touch-action: pan-y;
   }
 
   .uniform-viewer.is-ready .uniform-viewer__stage canvas {
@@ -822,6 +823,81 @@
     font-family: var(--font-headline);
     font-weight: 800;
     text-align: center;
+  }
+
+  .uniform-badge-status {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 4;
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: var(--radius-lg);
+    background: rgba(16, 14, 76, 0.92);
+    box-shadow: 0 10px 24px rgba(16, 14, 76, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+  }
+
+  .uniform-badge-status[hidden],
+  .uniform-badge-status a[hidden] {
+    display: none;
+  }
+
+  .uniform-badge-status > span {
+    min-width: 0;
+    flex: 1;
+    font-family: var(--font-headline);
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+
+  .uniform-badge-status a {
+    flex: 0 0 auto;
+    color: white;
+    font-family: var(--font-headline);
+    font-size: 0.76rem;
+    font-weight: 900;
+    text-underline-offset: 0.18em;
+  }
+
+  .uniform-badge-status a:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 3px;
+  }
+
+  .uniform-badge-status__close {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 2.5rem;
+    place-items: center;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .uniform-badge-status.is-pinned .uniform-badge-status__close {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .uniform-badge-status__close:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .uniform-badge-status__close:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 2px;
   }
 
   .uniform-viewer__controls {

@@ -65,6 +65,10 @@ async function initViewer(root) {
     oas: config.oas || {},
     sections: config.sections || [],
     debug: null,
+    info: null,
+    badges: [],
+    pinnedBadgeId: null,
+    hoveredBadgeId: null,
     targetCamera: cameraViews.front
   };
 
@@ -97,11 +101,13 @@ async function initViewer(root) {
   applySectionColour(uniform, config.sections, state.section);
   await renderBadges(config.badgePlacement, state, badgeLayer, uniform);
 
+  setCamera(camera, lookTarget, state.targetCamera);
+  state.info = initBadgeInteractions(root, canvas, camera, state, config.badgePlacement);
+  state.info.refresh();
   bindControls(root, state, config, uniform, badgeLayer);
   if (debugQueryMode && config.debugEnabled) {
     initDebugTools(root, canvas, camera, state, config.badgePlacement, uniform, badgeLayer, debugLayer);
   }
-  setCamera(camera, lookTarget, state.targetCamera);
   resize();
   status?.classList.add('is-hidden');
   root.classList.add('is-ready');
@@ -152,6 +158,7 @@ function bindControls(root, state, config, uniform, badgeLayer) {
       setActiveButton(root, '[data-uniform-section]', button);
       applySectionColour(uniform, config.sections, state.section);
       await renderBadges(config.badgePlacement, state, badgeLayer, uniform);
+      state.info?.refresh();
       state.debug?.refresh?.();
     });
   });
@@ -163,6 +170,7 @@ function bindControls(root, state, config, uniform, badgeLayer) {
       state.groups = getGroupsForView(config.badgePlacement, state.view);
       setActiveButton(root, '[data-uniform-view]', button);
       await renderBadges(config.badgePlacement, state, badgeLayer, uniform);
+      state.info?.refresh();
       state.debug?.refresh?.();
     });
   });
@@ -174,6 +182,289 @@ function setActiveButton(root, selector, activeButton) {
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-checked', String(isActive));
   });
+}
+
+function initBadgeInteractions(root, canvas, camera, state, data) {
+  const stage = root.querySelector('.uniform-viewer__stage');
+  const status = root.querySelector('[data-uniform-badge-status]');
+  const statusText = root.querySelector('[data-uniform-badge-status-text]');
+  const statusLink = root.querySelector('[data-uniform-badge-link]');
+  const closeButton = root.querySelector('[data-uniform-badge-close]');
+  let pointerStart = null;
+  let keyboardIndex = -1;
+  let statusBadgeId = null;
+
+  if (!stage || !status || !statusText || !statusLink) return { refresh() {} };
+
+  function refresh() {
+    keyboardIndex = -1;
+    clearStatus();
+  }
+
+  function clearStatus() {
+    state.pinnedBadgeId = null;
+    state.hoveredBadgeId = null;
+    statusBadgeId = null;
+    status.hidden = true;
+    status.classList.remove('is-pinned');
+    canvas.style.cursor = '';
+    updateBadgeHighlights(state);
+  }
+
+  function showStatus(badge, pinned = false) {
+    const info = getBadgeStatus(badge, state, data);
+    statusText.textContent = info.text;
+    setBadgeLink(statusLink, info.url, 'Learn more', info.external);
+    statusBadgeId = badge.id;
+    status.classList.toggle('is-pinned', pinned);
+    status.hidden = false;
+  }
+
+  closeButton?.addEventListener('click', () => {
+    clearStatus();
+    canvas.focus();
+  });
+
+  canvas.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch') return;
+    const mesh = pickBadgeAtPointer(event, canvas, camera, state.badgeMeshes);
+    if (mesh?.userData?.badge) {
+      state.hoveredBadgeId = mesh.userData.badgeId;
+      canvas.style.cursor = 'pointer';
+      if (!state.pinnedBadgeId) showStatus(mesh.userData.badge, false);
+      updateBadgeHighlights(state);
+    } else {
+      state.hoveredBadgeId = null;
+      if (!state.pinnedBadgeId) {
+        statusBadgeId = null;
+        status.hidden = true;
+      }
+      canvas.style.cursor = '';
+      updateBadgeHighlights(state);
+    }
+  });
+  canvas.addEventListener('pointerdown', (event) => {
+    pointerStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  });
+  canvas.addEventListener('pointercancel', () => {
+    pointerStart = null;
+  });
+  canvas.addEventListener('pointerup', (event) => {
+    if (!pointerStart || pointerStart.id !== event.pointerId) return;
+    const distance = Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y);
+    pointerStart = null;
+    if (distance > 10) return;
+
+    const mesh = pickBadgeAtPointer(event, canvas, camera, state.badgeMeshes);
+    if (!mesh?.userData?.badgeId) {
+      if (state.pinnedBadgeId) clearStatus();
+      return;
+    }
+
+    if (state.pinnedBadgeId === mesh.userData.badgeId) {
+      clearStatus();
+      return;
+    }
+
+    state.pinnedBadgeId = mesh.userData.badgeId;
+    state.hoveredBadgeId = null;
+    canvas.style.cursor = '';
+    showStatus(mesh.userData.badge, true);
+    updateBadgeHighlights(state);
+  });
+
+  status.addEventListener('pointerenter', () => {
+    state.hoveredBadgeId = null;
+    updateBadgeHighlights(state);
+  });
+  status.addEventListener('pointerleave', () => {
+    if (!state.pinnedBadgeId) {
+      statusBadgeId = null;
+      status.hidden = true;
+    }
+  });
+  stage.addEventListener('pointerleave', () => {
+    if (!state.pinnedBadgeId) clearStatus();
+  });
+
+  canvas.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      clearStatus();
+      return;
+    }
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      if (!state.badges.length) return;
+      event.preventDefault();
+      const direction = event.key === 'ArrowRight' ? 1 : -1;
+      keyboardIndex = (keyboardIndex + direction + state.badges.length) % state.badges.length;
+      const badge = state.badges[keyboardIndex];
+      state.pinnedBadgeId = null;
+      state.hoveredBadgeId = null;
+      showStatus(badge, false);
+      updateBadgeHighlights(state);
+      return;
+    }
+
+    if (event.key === 'Enter' && statusBadgeId) {
+      state.pinnedBadgeId = statusBadgeId;
+      state.hoveredBadgeId = null;
+      status.classList.add('is-pinned');
+      updateBadgeHighlights(state);
+    }
+  });
+
+  return { refresh, clearStatus };
+}
+
+function getBadgeStatus(badge, state, data) {
+  const links = data.information_links || {};
+  const defaultInfo = { text: badge.label, url: null, external: false };
+
+  const oasSkill = getOasSkill(badge, state);
+  if (oasSkill) {
+    return {
+      text: `Outdoor Adventure Skills · ${oasSkill.name}`,
+      url: `/sections/${state.section}/outdoor-skills#${slugifyBadgeName(oasSkill.name)}`,
+      external: false
+    };
+  }
+
+  if (/^milestone-[1-3]$/.test(badge.id)) {
+    return {
+      text: `Program Essentials · ${badge.label}`,
+      url: `/sections/${state.section}/milestones`,
+      external: false
+    };
+  }
+
+  if (badge.id === 'sia-cluster') {
+    return {
+      text: 'Special Interest Areas',
+      url: `/sections/${state.section}/special-interests`,
+      external: false
+    };
+  }
+
+  if (badge.id.startsWith('peak-award-')) {
+    const awardSectionSlug = badge.id.replace('peak-award-', '');
+    const awardSection = state.sections.find((item) => item.slug === awardSectionSlug);
+    const awardSectionName = awardSection?.shortname || awardSection?.name || awardSectionSlug;
+    return {
+      text: `Peak Award · ${badge.label}`,
+      url: `/sections/${awardSectionSlug}/peak-award`,
+      external: false
+    };
+  }
+
+  if (badge.id.startsWith('intro-')) {
+    return {
+      text: `Program Essentials · ${badge.label}`,
+      url: links.program_essentials,
+      external: true
+    };
+  }
+
+  if (badge.id.startsWith('years-service-')) {
+    return { ...defaultInfo, text: `Years of Service · ${badge.label.replace(' Years of Service', '')}` };
+  }
+
+  if (badge.id === 'event-badge') {
+    return {
+      text: 'Event Badge',
+      url: links.event_badges,
+      external: true
+    };
+  }
+
+  return defaultInfo;
+}
+
+function setBadgeLink(anchor, url, label, external = false) {
+  if (!anchor || !isUsefulBadgeLink(url)) {
+    if (anchor) anchor.hidden = true;
+    return false;
+  }
+
+  anchor.href = url;
+  anchor.textContent = external ? `${label} ↗` : label;
+  anchor.hidden = false;
+  if (external) {
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+  } else {
+    anchor.removeAttribute('target');
+    anchor.removeAttribute('rel');
+  }
+  return true;
+}
+
+function isUsefulBadgeLink(url) {
+  if (!url) return false;
+
+  try {
+    const target = new URL(url, window.location.href);
+    const current = new URL(window.location.href);
+    if (target.origin !== current.origin) return true;
+    return normalizePath(target.pathname) !== normalizePath(current.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function normalizePath(pathname) {
+  const normalized = pathname
+    .replace(/\/index\.html$/, '')
+    .replace(/\.html$/, '')
+    .replace(/\/+$/, '');
+  return normalized || '/';
+}
+
+function pickBadgeAtPointer(event, canvas, camera, meshes) {
+  if (!meshes.length) return null;
+
+  const rect = canvas.getBoundingClientRect();
+  const pointer = new THREE.Vector2(
+    ((event.clientX - rect.left) / rect.width) * 2 - 1,
+    -((event.clientY - rect.top) / rect.height) * 2 + 1
+  );
+  camera.updateMatrixWorld();
+  raycaster.setFromCamera(pointer, camera);
+  const directHit = raycaster.intersectObjects(meshes, false)[0];
+  if (directHit?.object) return directHit.object;
+
+  const targetRadius = event.pointerType === 'touch' ? 28 : 22;
+  let nearest = null;
+  let nearestDistance = targetRadius;
+  const worldPosition = new THREE.Vector3();
+
+  meshes.forEach((mesh) => {
+    mesh.getWorldPosition(worldPosition);
+    const projected = worldPosition.clone().project(camera);
+    if (projected.z < -1 || projected.z > 1) return;
+
+    const x = (projected.x * 0.5 + 0.5) * rect.width;
+    const y = (-projected.y * 0.5 + 0.5) * rect.height;
+    const distance = Math.hypot(event.clientX - rect.left - x, event.clientY - rect.top - y);
+    if (distance < nearestDistance) {
+      nearest = mesh;
+      nearestDistance = distance;
+    }
+  });
+
+  return nearest;
+}
+
+function updateBadgeHighlights(state) {
+  state.badgeMeshes.forEach((mesh) => {
+    const isHovered = mesh.userData.badgeId === state.hoveredBadgeId;
+    mesh.scale.setScalar(isHovered ? 1.08 : 1);
+    mesh.renderOrder = isHovered ? 2 : 1;
+  });
+}
+
+function slugifyBadgeName(value) {
+  return String(value || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 async function buildUniform(status, placementData) {
@@ -377,7 +668,9 @@ async function renderBadges(data, state, layer, uniform) {
 
   uniform?.group?.updateMatrixWorld(true);
   const meshes = await Promise.all(badges.map((badge) => createBadgeMesh(badge, data.anchors[badge.anchor], state, uniform, badge.anchor)));
-  meshes.filter(Boolean).forEach((mesh) => {
+  state.badges = badges;
+  state.badgeMeshes = meshes.filter(Boolean);
+  state.badgeMeshes.forEach((mesh) => {
     layer.add(mesh);
     state.badgeMeshById.set(mesh.userData.badgeId, mesh);
   });
@@ -895,6 +1188,7 @@ async function createBadgeMesh(badge, anchor, state, uniform, anchorId = badge.a
   mesh.userData.texture = texture;
   mesh.userData.badgeId = badge.id;
   mesh.userData.anchorId = anchorId;
+  mesh.userData.badge = badge;
   return mesh;
 }
 
@@ -1369,10 +1663,19 @@ function getOasStage(badge, state) {
   const sectionOas = state.oas?.[state.section];
   if (!sectionOas) return null;
 
+  const skill = getOasSkill(badge, state);
+  return Number(skill?.stage || sectionOas.stage_requirement || 1);
+}
+
+function getOasSkill(badge, state) {
+  if (!badge.icon?.startsWith('oas-')) return null;
+
+  const sectionOas = state.oas?.[state.section];
+  if (!sectionOas) return null;
+
   const skillSlug = badge.icon.slice(4);
   const skills = [...(sectionOas.core_skills || []), ...(sectionOas.specialist_skills || [])];
-  const skill = skills.find((item) => String(item.name || '').toLowerCase().replace(/\s+/g, '-') === skillSlug);
-  return Number(skill?.stage || sectionOas.stage_requirement || 1);
+  return skills.find((item) => slugifyBadgeName(item.name) === skillSlug) || null;
 }
 
 function getBadgeAssetPath(badge, sectionSlug) {

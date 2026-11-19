@@ -9,6 +9,10 @@ views:
     label: Right Sleeve
     description: Right sleeve - My Identity
 
+information_links:
+  program_essentials: https://scoutsvictoria.com.au/age-sections-adults/our-program/your-scouting-journey/achievement-pathways/program-essentials-overview/
+  event_badges: https://scoutsvictoria.com.au/age-sections-adults/uniform-and-badge-placement/special-event-badges/
+
 placement_surfaces:
   front:
     pin_origin: [-0.444, 0.544, 3.394]

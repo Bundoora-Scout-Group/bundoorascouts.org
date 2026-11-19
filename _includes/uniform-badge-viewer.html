@@ -19,7 +19,7 @@
     <div>
       <h2 id="uniform-viewer-title" class="section-title">Explore the uniform in 3D</h2>
       <p class="section-description">
-        Switch section colours and rotate to the key placement areas described in the guide below.
+        Switch sections and views, then hover over a badge for details. Tap a badge to keep them open.
       </p>
     </div>
   </div>
@@ -27,7 +27,15 @@
   <div class="uniform-viewer__shell">
     <div class="uniform-viewer__stage">
       <div class="uniform-viewer__status" data-uniform-status role="status">Loading 3D uniform viewer...</div>
-      <canvas data-uniform-canvas aria-label="3D Scout uniform badge placement viewer"></canvas>
+      <canvas data-uniform-canvas tabindex="0" aria-label="3D Scout uniform badge placement viewer. Use the arrow keys to inspect badges."></canvas>
+      <p class="sr-only">Hover over a badge for its name. On a keyboard, use the left and right arrow keys to move between badges and Escape to close the status.</p>
+      <div class="uniform-badge-status" data-uniform-badge-status aria-live="polite" hidden>
+        <span data-uniform-badge-status-text></span>
+        <a href="#" data-uniform-badge-link hidden>Learn more</a>
+        <button type="button" class="uniform-badge-status__close" data-uniform-badge-close aria-label="Close badge status">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
       <noscript>
         <p class="uniform-viewer__noscript">The 3D viewer needs JavaScript. The written badge placement guide is available below.</p>
       </noscript>
