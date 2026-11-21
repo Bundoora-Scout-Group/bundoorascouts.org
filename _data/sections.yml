@@ -20,6 +20,7 @@
   time: "Thursday – 6.00pm to 7.00pm"
   colour: "#F4A261"
   colour_dark: "#C16733"
+  uniform_colour: "#C92A2F"
   icon: child_care
   material_icon: child_care
   description: The first step in the Scouting journey. Focus on fun, friendship, and discovering the world around them.
@@ -40,6 +41,7 @@
   time: "Monday – 7.00pm to 8.30pm"
   colour: "#E9C46A"
   colour_dark: "#FFCD00"
+  uniform_colour: "#EFB72A"
   icon: forest
   material_icon: forest
   description: Learning practical skills, working in small teams (Sixes), and exploring the great outdoors.
@@ -60,6 +62,7 @@
   time: "Wednesday – 7.00pm to 9.00pm"
   colour: "#2A9D8F"
   colour_dark: "#00A94F"
+  uniform_colour: "#276D60"
   icon: explore
   material_icon: explore
   description: Taking charge of their own adventures, developing leadership skills, and tackling bigger challenges.
@@ -80,6 +83,7 @@
   time: "Enquire for details"
   colour: "#A6264C"
   colour_dark: "#A6264C"
+  uniform_colour: "#781F36"
   icon: hiking
   material_icon: hiking
   description: Self-directed program focused on personal growth, major expeditions, and vocational skills.
@@ -99,6 +103,7 @@
   time: "Thursday – 7.30pm to 9.30pm"
   colour: "#DC291E"
   colour_dark: "#DC291E"
+  uniform_colour: "#C92A2F"
   icon: directions_bike
   material_icon: directions_bike
   description: Service, adventure, and fellowship. Rovers give back to the community while pursuing their own goals.

@@ -9,7 +9,7 @@ const cameraViews = {
   right_sleeve: { position: [-2.35, 0.42, 0.68], target: [-0.78, 0.26, 0.02] }
 };
 
-const shirtBase = '#5ea4c8';
+const shirtBase = '#161b32';
 const darkTrim = '#172554';
 const badgeForward = new THREE.Vector3(0, 0, 1);
 const worldUp = new THREE.Vector3(0, 1, 0);
@@ -484,14 +484,7 @@ async function buildModelUniform(placementData) {
   const gltf = await loader.loadAsync(shirtModelUrl);
   const group = new THREE.Group();
   const model = gltf.scene;
-  const tintMaterials = [];
-  const materialRoles = {
-    body: [],
-    section: [],
-    trim: [],
-    pocket: [],
-    neutral: []
-  };
+  const sectionColour = new THREE.Color(darkTrim);
 
   const bounds = new THREE.Box3().setFromObject(model);
   const size = bounds.getSize(new THREE.Vector3());
@@ -510,20 +503,9 @@ async function buildModelUniform(placementData) {
     child.geometry.computeBoundingSphere();
     child.geometry.computeBoundingBox();
 
-    const originalWasArray = Array.isArray(child.material);
-    const materials = originalWasArray ? child.material : [child.material];
-    const clonedMaterials = materials.map((material) => {
-      const cloned = material.clone();
-      cloned.metalness = 0.02;
-      cloned.roughness = 0.88;
-      cloned.envMapIntensity = 0.45;
-      cloned.userData.originalMap = cloned.map || null;
-      tintMaterials.push(cloned);
-      materialRoles[getMaterialRole(child.name, material.name)].push(cloned);
-      return cloned;
-    });
-
-    child.material = originalWasArray ? clonedMaterials : clonedMaterials[0];
+    child.material = Array.isArray(child.material)
+      ? child.material.map((material) => colourShirtMaterial(material, sectionColour))
+      : colourShirtMaterial(child.material, sectionColour);
   });
 
   group.add(model);
@@ -534,49 +516,67 @@ async function buildModelUniform(placementData) {
 
   return {
     group,
-    model,
     isModel: true,
+    sectionColour,
     badgeSurfaceMeshes,
-    ...createPlacementSurfaces(badgeSurfaceMeshes, placementData?.placement_surfaces),
-    shirtMaterial: tintMaterials[0],
-    tintMaterials,
-    materialRoles,
-    trimMaterial: tintMaterials[0],
-    pocketMaterial: tintMaterials[0]
+    ...createPlacementSurfaces(badgeSurfaceMeshes, placementData?.placement_surfaces)
   };
 }
 
-function getMaterialRole(meshName = '', materialName = '') {
-  const name = `${meshName} ${materialName}`.toLowerCase();
-  if (/(collar|shoulder|yoke|sleeve trim|section)/.test(name)) return 'section';
-  if (/(placket|button|scarf|woggle|trim)/.test(name)) return 'trim';
-  if (/(pocket)/.test(name)) return 'pocket';
-  if (/(seam|stitch|label|tag)/.test(name)) return 'neutral';
-  return 'body';
+function colourShirtMaterial(sourceMaterial, sectionColour) {
+  const material = sourceMaterial.clone();
+  material.color.set(shirtBase);
+  material.metalness = 0.02;
+  material.roughness = 0.88;
+
+  material.onBeforeCompile = (shader) => {
+    shader.uniforms.sectionColour = { value: sectionColour };
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nuniform vec3 sectionColour;')
+      .replace('#include <map_fragment>', `
+        #include <map_fragment>
+        #ifdef USE_MAP
+          // The GLB bakes cyan trim and navy cloth into one map. Use the cyan
+          // chroma as a mask and retain the brightness variation within each fabric.
+          vec3 texel = sampledDiffuseColor.rgb;
+          float trim = smoothstep(0.42, 0.67, (texel.g - texel.r) / max(texel.b, 0.003));
+          float fabricShade = clamp(texel.b / mix(0.012, 0.053, trim), 0.06, 1.55);
+          diffuseColor.rgb = mix(diffuse, sectionColour, trim) * fabricShade;
+        #endif
+      `);
+  };
+
+  return material;
 }
 
 function buildProceduralUniform(placementData) {
   const group = new THREE.Group();
   const shirtMaterial = fabricMaterial(shirtBase);
+  const sectionMaterial = fabricMaterial(darkTrim);
   const trimMaterial = fabricMaterial(darkTrim, 0.55);
-  const seamMaterial = fabricMaterial('#d6eef8', 0.5);
-  const pocketMaterial = fabricMaterial('#e3f4fa', 0.75);
+  const seamMaterial = fabricMaterial('#252d46', 0.5);
 
   const torso = new THREE.Mesh(new THREE.BoxGeometry(1.55, 2.3, 0.58, 3, 6, 2), shirtMaterial);
   torso.position.y = -0.05;
   group.add(torso);
 
-  const leftSleeve = new THREE.Mesh(new THREE.BoxGeometry(0.48, 1.75, 0.46, 2, 5, 2), shirtMaterial);
+  const sleeveGeometry = new THREE.BoxGeometry(0.48, 1.75, 0.46, 2, 5, 2);
+  // BoxGeometry face order is +X, -X, +Y, -Y, +Z, -Z.
+  const leftSleeve = new THREE.Mesh(sleeveGeometry, [
+    shirtMaterial, sectionMaterial, sectionMaterial, shirtMaterial, shirtMaterial, shirtMaterial
+  ]);
   leftSleeve.position.set(-1.0, -0.18, 0.02);
   leftSleeve.rotation.z = -0.16;
   group.add(leftSleeve);
 
-  const rightSleeve = new THREE.Mesh(new THREE.BoxGeometry(0.48, 1.75, 0.46, 2, 5, 2), shirtMaterial);
+  const rightSleeve = new THREE.Mesh(sleeveGeometry, [
+    sectionMaterial, shirtMaterial, sectionMaterial, shirtMaterial, shirtMaterial, shirtMaterial
+  ]);
   rightSleeve.position.set(1.0, -0.18, 0.02);
   rightSleeve.rotation.z = 0.16;
   group.add(rightSleeve);
 
-  const collarLeft = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.18, 0.12), trimMaterial);
+  const collarLeft = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.18, 0.12), sectionMaterial);
   collarLeft.position.set(-0.25, 1.16, 0.35);
   collarLeft.rotation.z = -0.45;
   group.add(collarLeft);
@@ -590,7 +590,7 @@ function buildProceduralUniform(placementData) {
   placket.position.set(0, 0.23, 0.33);
   group.add(placket);
 
-  const leftPocket = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.44, 0.035), pocketMaterial);
+  const leftPocket = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.44, 0.035), shirtMaterial);
   leftPocket.position.set(-0.36, 0.1, 0.35);
   group.add(leftPocket);
 
@@ -613,9 +613,7 @@ function buildProceduralUniform(placementData) {
   group.rotation.x = -0.02;
   return {
     group,
-    shirtMaterial,
-    trimMaterial,
-    pocketMaterial,
+    sectionColour: sectionMaterial.color,
     ...createFallbackPlacementSurfaces(placementData?.placement_surfaces)
   };
 }
@@ -631,31 +629,7 @@ function fabricMaterial(color, roughness = 0.82) {
 
 function applySectionColour(uniform, sections, slug) {
   const section = sections.find((item) => item.slug === slug);
-  const colour = section?.colour || shirtBase;
-  const trim = section?.colour_dark || darkTrim;
-
-  if (uniform.isModel) {
-    const roles = uniform.materialRoles || {};
-    const bodyMaterials = roles.body?.length ? roles.body : uniform.tintMaterials;
-
-    bodyMaterials.forEach((material) => setMaterialColour(material, shirtBase));
-    roles.section?.forEach((material) => setMaterialColour(material, colour));
-    roles.trim?.forEach((material) => setMaterialColour(material, trim));
-    roles.pocket?.forEach((material) => setMaterialColour(material, lighten(shirtBase, 0.68)));
-    roles.neutral?.forEach((material) => setMaterialColour(material, '#d6eef8'));
-
-    return;
-  }
-
-  uniform.shirtMaterial.color.set(colour);
-  uniform.trimMaterial.color.set(trim);
-  uniform.pocketMaterial.color.set(lighten(colour, 0.68));
-}
-
-function setMaterialColour(material, colour) {
-  if (!material) return;
-  material.color.set(colour);
-  material.needsUpdate = true;
+  uniform.sectionColour.set(section?.uniform_colour || darkTrim);
 }
 
 async function renderBadges(data, state, layer, uniform) {
@@ -1874,12 +1848,6 @@ function setCamera(camera, target, view) {
 
 function vectorFromArray(value) {
   return new THREE.Vector3(value[0], value[1], value[2]);
-}
-
-function lighten(hex, amount) {
-  const colour = new THREE.Color(hex);
-  colour.lerp(new THREE.Color('#ffffff'), amount);
-  return colour;
 }
 
 function readableTextColour(hex) {
